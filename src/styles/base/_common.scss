@@ -1,0 +1,35 @@
+@media (min-width: 375px) {
+    #root,
+    .Nav,
+    .showNav{
+        width: 430px;
+    }
+}
+@media (max-width:500px) {
+    #root,
+    .Nav,
+    .showNav{
+        width: 100vw;
+    }
+}
+
+#root {
+    box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+    margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
+}
+
+
+
+body {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    
+}
+
+button {
+    cursor: pointer;
+} 
