@@ -1,6 +1,6 @@
 import './styles/main.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Suspense } from 'react';
+import { Suspense,lazy } from 'react';
 
 const Login = lazy(() => import('./components/Login/Login'));
 const Mainpage = lazy(() => import('./components/main/MainPage'));
