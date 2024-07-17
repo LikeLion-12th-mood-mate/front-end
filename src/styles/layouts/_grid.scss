@@ -23,7 +23,7 @@ $sm-margin:10px;
     }
     //.col-sm-1 .col-sm-2
     [class^='col-']{
-        padding: 0 $gutter/2;
+        padding: 0 ($gutter/2);
     }
 
     @for $i from 1 through $sm-columns{
