@@ -1,0 +1,34 @@
+/*
+ * MOBILE < 768px ----------------------------------------------
+ * fixture--------------------sm
+ * # of columns --------------5
+ * gutter --------------------20px
+ * unit ----------------------(100%-20px)/5 -20px => 20% -24px
+ * margin --------------------10px
+ * container-size ------------100%-10px
+ */
+
+$gutter: 20px;
+
+$sm-columns:5;
+
+$sm-margin:10px;
+
+ .container{
+     width: 100%;
+     padding: 0 $sm-margin;
+    .row{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    //.col-sm-1 .col-sm-2
+    [class^='col-']{
+        padding: 0 $gutter/2;
+    }
+
+    @for $i from 1 through $sm-columns{
+        .col-sm-#{$i} {
+            width: percentage($i/$sm-columns);
+        }
+    }
+ }
