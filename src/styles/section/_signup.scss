@@ -1,0 +1,58 @@
+.signup{
+    background-color: $white;
+    .signup-wrap{
+        padding:134px 0px;
+        position: relative;
+        height: 100vh;
+        .signup-title{
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 34.75px;
+            margin-bottom: 53px;
+        }
+        .email-wrap{
+            width: 100%;
+            margin-bottom: 15px;
+            .input-bs{
+                @extend %input-base;
+                border: 1px solid $grey;
+                &:nth-of-type(1){
+                    width: 151px;
+                    height: 35px;
+                }
+                &:nth-of-type(2){
+                    width: 171px;
+                    height: 35px;
+                }
+            }
+        }
+        .certified{
+            @extend %input-base;
+            width: 100%;
+            border-radius: 0px;
+            border-bottom: 1px solid $grey;
+            margin-bottom: 24px;
+        }
+        .is-certified{
+            @include flexbox(center,center);
+            font-size: 12px;
+            font-weight: 400;
+            margin-bottom: 22px
+        }
+        .pw{
+            @extend %input-base;
+            width: 100%;
+            border: 1px solid $grey;
+        }
+        .check-button{
+            @extend %btn-base;
+            position: absolute;
+            font-size: 14px;
+            left: 0;
+            bottom: 37px;
+            background-color: $light-green;
+            width: 100%;
+            height: 60px;
+        }
+    }
+}

@@ -36,11 +36,7 @@ function Login() {
             <form>
               <button className='login-button' onClick={handleLogin}>로그인</button>
             </form>
-           
-           
-           
           </div>
-          
         </div>
       </div>
     </div>
