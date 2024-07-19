@@ -1,0 +1,11 @@
+%btn-base {
+    @include inline-flexbox(center, center);
+    border-radius: 20px;
+    font-weight: 400;
+  
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+  }

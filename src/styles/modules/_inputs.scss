@@ -1,0 +1,13 @@
+%input-base{
+    padding: 7px 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20.27px;
+    border-radius: 5px;
+    &::placeholder {
+        color: #C4C7C4
+    }
+    &:focus{
+        border-color: $deep-green;
+    }
+}

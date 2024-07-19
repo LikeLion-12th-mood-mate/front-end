@@ -1,0 +1,36 @@
+.complete{
+    background-color: $light-green;
+    height: 100vh;
+    .complete-wrap{
+        padding:134px 0px;
+        position: relative;
+        height: 100vh;
+        .complete-title{
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 34.75px;
+            margin-bottom: 62px;
+            color: $black;
+        }
+        .complete-image{
+            @include flexbox(center,center);
+            width: 100%;
+            height: 312px;
+            display: block;
+            background-position: center,center;
+            background-size: 312px 312px;
+            background-repeat: no-repeat
+        }
+        .complete-button{
+            @extend %btn-base;
+            position: absolute;
+            font-size: 14px;
+            left: 0;
+            bottom: 37px;
+            background-color: $white;
+            color: $black;
+            width: 100%;
+            height: 60px;
+        }
+    }
+}
