@@ -22,7 +22,9 @@
                     width: 151px;
                     height: 35px;
                 }
-                
+                &.active{
+                    border-color: $error;
+                }
                 
             }
             span{
@@ -131,7 +133,7 @@
         font-weight: 700;
         border-radius: 16px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-        animation: slide-up-fade-in 0.3s ease-in-out;
+        animation: slide-up-fade-in 2.1s ease-in-out;
     }
     
 }
@@ -141,8 +143,16 @@
         transform: translateY(30px);
         opacity: 0;
     }
-    100%{
+    20%{
         transform: translateY(0);
         opacity: 1;
+    }
+    80%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(30px);
+        opacity: 0;
     }
 }
