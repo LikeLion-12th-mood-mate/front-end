@@ -1,6 +1,7 @@
 import './styles/main.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Suspense,lazy } from 'react';
+import Complete from './components/signup/Complete';
 
 const Login = lazy(() => import('./components/Login/Login'));
 const Mainpage = lazy(() => import('./components/main/MainPage'));
@@ -17,6 +18,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Login/>}/>
       <Route path='/signup' element={<Signup/>}/>
+      <Route path='/complete' element={<Complete/>}/>
       <Route path='/home' element={<Mainpage/>}/>
       <Route path='/chat' element={<Chat/>}/>
       <Route path='/category' element={<Category/>}/>

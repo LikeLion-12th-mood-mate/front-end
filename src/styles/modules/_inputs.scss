@@ -7,13 +7,7 @@
     &::placeholder {
         color: #C4C7C4
     }
-    &.active{
-        color: $black;
+    &:focus{
+        border-color: $deep-green;
     }
-}
-.input-email{
-    @extend %input-base;
-    display: block;
-    width: 130px;
-    height: 40px;
 }

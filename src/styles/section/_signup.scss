@@ -10,7 +10,9 @@
             line-height: 34.75px;
             margin-bottom: 53px;
         }
+        //이메일
         .email-wrap{
+            @include flexbox(start,center);
             width: 100%;
             margin-bottom: 15px;
             .input-bs{
@@ -20,30 +22,89 @@
                     width: 151px;
                     height: 35px;
                 }
-                &:nth-of-type(2){
-                    width: 171px;
-                    height: 35px;
+                
+                
+            }
+            span{
+                margin: 0px 6px;
+            }
+            .email-option-wrap{
+                display: block;
+                width: 100%;
+                position: relative;
+                .input-email-option{
+                    @extend %input-base;
+                    border: 1px solid $grey;
+                    width: 100%;
+                    
+                }
+                .downdrop{
+                    display: block;
+                    width: 12px;
+                    height: 6px;
+                    position: absolute;
+                    right: 10px;
+                    top:15px;
                 }
             }
         }
-        .certified{
-            @extend %input-base;
+        //인증코드
+        .certified-wrap{
+            display: block;
             width: 100%;
-            border-radius: 0px;
-            border-bottom: 1px solid $grey;
-            margin-bottom: 24px;
+            position: relative;
+            .certified-check{
+                display: block;
+                width: 24px;
+                height: 24px;
+                position: absolute;
+                right: 0;
+                top: 5px;
+            }
+            .count-wrap{
+                position: absolute;
+                top: 5px;
+                right: 34px;
+                font-size: 14px;
+                font-weight: 400;
+                color: $grey;
+            }
+            .certified{
+                @extend %input-base;
+                width: 100%;
+                border-radius: 0px;
+                border-bottom: 1px solid $grey;
+                margin-bottom: 24px;
+            }
         }
+        
         .is-certified{
             @include flexbox(center,center);
             font-size: 12px;
             font-weight: 400;
-            margin-bottom: 22px
+            margin-bottom: 22px;
+            &.active{
+                color: $deep-green;
+            }
         }
-        .pw{
-            @extend %input-base;
-            width: 100%;
-            border: 1px solid $grey;
+        //비밀번호
+        .password-wrap{
+            position: relative;
+            .pw{
+                @extend %input-base;
+                width: 100%;
+                border: 1px solid $grey;
+            }
+            .show-password{
+                display: block;
+                width: 24px;
+                height: 24px;
+                position: absolute;
+                right: 10px;
+                top: 7px;
+            }
         }
+        //확인버튼
         .check-button{
             @extend %btn-base;
             position: absolute;
@@ -54,5 +115,34 @@
             width: 100%;
             height: 60px;
         }
+        
+        
+    }
+    //버튼 클릭시 나오는 모달
+    .signup-modal-wrap{
+        @include flexbox(center,center);
+        width: 100%;
+        height: 63px;
+        position: absolute;
+        top: 21px;
+        background-color: #E9F3ED;
+        color: $grey;
+        font-size: 14px;
+        font-weight: 700;
+        border-radius: 16px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+        animation: slide-up-fade-in 0.3s ease-in-out;
+    }
+    
+}
+
+@keyframes slide-up-fade-in {
+    0%{
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
     }
 }
