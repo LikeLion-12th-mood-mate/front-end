@@ -5,7 +5,7 @@ import Complete from './components/signup/Complete';
 
 const Login = lazy(() => import('./components/Login/Login'));
 const Mainpage = lazy(() => import('./components/main/MainPage'));
-const Chat = lazy(()=>import('./components/chat/Chat'));
+const Consult = lazy(()=>import('./components/chat/Chat'));
 const Category = lazy(()=> import('./components/category/Category'));
 const Diary = lazy(()=>import("./components/diary/Diary"));
 const Signup = lazy(()=>import("./components/signup/Signup"));
@@ -20,7 +20,7 @@ function App() {
       <Route path='/signup' element={<Signup/>}/>
       <Route path='/complete' element={<Complete/>}/>
       <Route path='/home' element={<Mainpage/>}/>
-      <Route path='/chat' element={<Chat/>}/>
+      <Route path='/consult' element={<Consult/>}/>
       <Route path='/category' element={<Category/>}/>
       <Route path='/diary' element={<Diary/>}/>
       

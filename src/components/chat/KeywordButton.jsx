@@ -1,9 +1,5 @@
 import React from 'react'
 
-import recent from '../../assets/chat/recent.svg';
-import consult from '../../assets/chat/consult.svg';
-import star from '../../assets/chat/star.svg';
-import speed from '../../assets/chat/speed.svg';
 
 function KeywordButton() {
   return (

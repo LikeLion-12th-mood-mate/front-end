@@ -44,6 +44,10 @@ html {
   }
 body {
     font-family: $font-main;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar{
+        display: none;
+    }
 }
 
 // 링크 초기화
