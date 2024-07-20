@@ -1,0 +1,20 @@
+import React from 'react';
+
+import gotochat from '../../assets/chat/gotochat.svg';
+import search from '../../assets/chat/search.svg';
+function ChatHeader(props) {
+  return (
+    <div className='chat-header-wrap'>
+        <div className='header-title-wrap'>
+            <h1 className='chat-header-title'>상담사 목록</h1>
+            <img src={gotochat} className='gotochat-img' alt='gotochat-image' />
+        </div>
+        <div className='search-input-wrap'>
+            <input className='search-input' placeholder='찾고 계신 상담사님이 따로 있으신가요?'/>
+            <img src={search} className='search-image'/>
+        </div>
+    </div>
+  )
+}
+
+export default ChatHeader
