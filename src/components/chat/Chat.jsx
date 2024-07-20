@@ -4,6 +4,7 @@ import KeywordButton from './KeywordButton';
 import Cardwrap from './Cardwrap';
 import Card from './Card';
 import GetChatInfo from '../../api/chat/GetChatInfo';
+import Footer from '../footer/Footer';
 const dummydata = [
   {
     category:'아동청소년 상담',
@@ -63,6 +64,7 @@ function Chat() {
           </div>
         </div>
       </div>
+      <Footer footerstate='consult'/>
     </div>
   )
 }
