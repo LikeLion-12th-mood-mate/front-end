@@ -1,0 +1,86 @@
+.chat{
+    background-color: $white;
+    //채팅페이지 헤더부분
+    .chat-header-wrap{
+        //background-color: $white;
+        position: fixed;
+        display: block;
+        width: 100%;
+        //height: 300px;
+        padding-top: 45px;
+        .header-title-wrap{
+            @include flexbox(between,center);
+            padding: 0 25px;
+            margin-bottom: 18px;
+            .chat-header-title{
+                font-size: 24px;
+                font-weight: 700;
+                color: $black;
+
+            }
+            .gotochat-img{
+                display: block;
+                width: 28px;
+                height: 28px;
+            }
+        }
+        
+        .search-input-wrap{
+            position: relative;
+            padding: 0 20px;
+            .search-input{
+                @extend %input-base;
+                padding: 14px 20px;
+                display: block;
+                width: 100%;
+                font-size: 14px;
+                line-height: 20.27px;
+                font-weight: 400;
+                border: 1px solid $searchcolor;
+                &::placeholder{
+                    color: $searchcolor;
+                }
+                &:focus{
+                    border-color: #A3F2D8;
+                }
+            }
+            .search-image{
+                display: block;
+                width: 24px;
+                height: 24px;
+                position: absolute;
+                top: 12px;
+                right: 35px;
+            }
+        }
+        @media(min-width: 768px){
+            width: 430px;
+        }
+    }
+    .chat-wrap{
+        @include column-flexbox(start,start);
+        padding-top: 164px;
+        .keyword-wrap{
+            @include flexbox(start,center);
+            flex-wrap: nowrap;
+            overflow: hidden;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none; 
+            .keyword{
+                @extend %btn-base;
+                margin-right: 8px;
+                padding: 8px 16px;
+                flex-shrink: 0;
+                background-color: $white;
+                border: 1px solid $grey;
+                font-size: 14px;
+                font-weight: 700;
+                span{
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    
+}
