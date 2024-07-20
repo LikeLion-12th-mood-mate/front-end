@@ -29,7 +29,7 @@ function Login() {
             </div>
          
             <input ref={idRef} className='input-email active' placeholder='아이디를 입력해주세요'/>
-            <input ref={pwRef} className='input-email active' placeholder='비밀번호를 입력해주세요'/>
+            <input ref={pwRef} type='password' className='input-email active' placeholder='비밀번호를 입력해주세요'/>
             <Link to='/signup'>
               <p className='goto-signup'>회원가입</p>
             </Link>
