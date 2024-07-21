@@ -1,8 +1,12 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 
 function Diary() {
   return (
-    <div>Diary</div>
+    <div>
+      Diary
+      <Outlet />
+    </div>
   )
 }
 
