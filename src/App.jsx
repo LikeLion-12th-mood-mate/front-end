@@ -10,6 +10,7 @@ const Consult = lazy(()=>import('./components/chat/Chat'));
 const Category = lazy(()=> import('./components/category/Category'));
 const Diary = lazy(()=>import("./components/diary/Diary"));
 const Signup = lazy(()=>import("./components/signup/Signup"));
+const ConsultDetail = lazy(()=>import("./components/chat/detail/ConsultDetail"));
 
 const router =createBrowserRouter([
   {
@@ -32,8 +33,20 @@ const router =createBrowserRouter([
   {
     path:'/consult',
     element: <Consult/>,
-    children:[{path:'/consult',element:<Footer footerState='consult'/>}]
+    children:
+    [
+      {path:'/consult',element:<Footer footerState='consult'/>},
+    ]
   },
+  {
+    path:'/consult/:id',
+    element: <ConsultDetail/>,
+    children:
+    [
+      {path:'/consult/:id',element:<Footer footerState='consult'/>},
+    ]
+  },
+  
   {
     path:'/program',
     element: <Category/>,

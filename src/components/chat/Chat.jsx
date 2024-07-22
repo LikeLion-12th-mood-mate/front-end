@@ -6,8 +6,10 @@ import Card from './Card';
 import GetChatInfo from '../../api/chat/GetChatInfo';
 import Footer from '../footer/Footer';
 import { Outlet } from 'react-router-dom';
+import Gridwrap from '../grid/Gridwrap';
 const dummydata = [
   {
+    id:1,
     category:'아동청소년 상담',
     star:4.9,
     time:'3분이내 가능',
@@ -16,6 +18,7 @@ const dummydata = [
     content:'당신의 이야기를 진심으로 듣는 심리상담사입니다',
   },
   {
+    id:2,
     category:'아동청소년 상담',
     star:4.5,
     name:'한유진상담사',
@@ -50,21 +53,19 @@ function Chat() {
   return (
     <div className='chat'>
       <ChatHeader search={search} setSearch={setSearch}/>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-sm-5'>
-            <div className='chat-wrap'>
+        <Gridwrap>
+         <div className='chat-wrap'>
               <KeywordButton/>
               {dummytitle.map((data)=>(
                 <Cardwrap title={data.title}>
-                <Card consultData={consultData}/>
-              </Cardwrap>
+                  <Card consultData={consultData}/>
+                </Cardwrap>
               ))}
               
             </div>
-          </div>
-        </div>
-      </div>
+        </Gridwrap>
+           
+          
       <Outlet/>
     </div>
   )

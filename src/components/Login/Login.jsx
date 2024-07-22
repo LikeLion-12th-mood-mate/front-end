@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import MainLogo from '../../assets/service-logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import PostLogin from '../../api/login/PostLogin';
+import Gridwrap from '../grid/Gridwrap';
 function Login() {
   const idRef = useRef();
   const pwRef = useRef();
@@ -20,10 +21,8 @@ function Login() {
   }
   return (
     <section className='login'>
-    <div className='container'>
-      <div className='row'>
-        <div className='col-sm-5'  >
-          <div className='login-wrap'>
+      <Gridwrap>
+        <div className='login-wrap'>
             <div className='main-logo-wrap'>
               <img src={MainLogo} className='main-logo' alt='main-logo' />
             </div>
@@ -36,10 +35,10 @@ function Login() {
             <form>
               <button className='login-button' onClick={handleLogin}>로그인</button>
             </form>
-          </div>
+          
         </div>
-      </div>
-    </div>
+      </Gridwrap>
+          
     
     </section>
     

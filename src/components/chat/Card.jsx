@@ -1,12 +1,14 @@
 import React from 'react'
 import star from '../../assets/chat/star.svg';
+import { Link } from 'react-router-dom';
 
 function Card(props) {
     console.log("card props:",props.consultData)
   return (
     <ul className='card-wrap'>
         {props.consultData.map((data,index)=>(
-            <li key={index} className='card'>
+          <Link to={`/consult/${data.id}`}>
+            <li key={data.id} className='card'>
                 <p className='title'>{data.category}</p>
                 <div className='content-wrap'>
                   <span className='profile'/>
@@ -23,6 +25,8 @@ function Card(props) {
                   </div>
                 </div>
             </li>
+          </Link>
+            
         ))}
     </ul>
   )

@@ -10,6 +10,7 @@ import PostSignup from '../../api/signup/PostSignup';
 import CertifiedCount from './CertifiedCount';
 import Modal from './Modal';
 import { useNavigate } from 'react-router-dom';
+import Gridwrap from '../grid/Gridwrap';
 const dummydata={
     certified:'1234'
 }
@@ -72,10 +73,8 @@ function Signup() {
     console.log("이메일 종류",kindOfEmailRef.current?.value)
   return (
     <section className='signup'>
-        <div className='container'>
-            <div className='row'>
-                <div className='col-sm-5'>
-                    <div className='signup-wrap'>
+        <Gridwrap>
+            <div className='signup-wrap'>
                         <h3 className='signup-title'>{isCertified ? <>인증 된 메일은<br/>
                             아이디로 사용할게요😊</>:<>서비스 이용 시작 전 <br/> 본인인증이 필요합니다.</>}</h3>
                         <div className='email-wrap'>
@@ -112,9 +111,9 @@ function Signup() {
                         </form>
                         {isButtonClick&&count>598? <Modal count={count}/> : ''}
                     </div>
-                </div>
-            </div>
-        </div>
+        </Gridwrap>
+                    
+              
     </section>
   )
 }
