@@ -1,4 +1,21 @@
 .gotochat-wrap{
+    @extend %btn-base;
     position: fixed;
-    
+    right: 17.7px;
+    bottom: 143px;
+    border-radius: 50px;
+    background-color: $deep-green;
+    border: 1px solid $light-green;
+    color: $white;
+    padding: 13.5px 20px;
+    img{
+        @include imgsize(28px,28px);
+        margin-right: 7px;
+    }
+}
+@media (min-width:768px) {
+    .gotochat-wrap{
+        right: 50%;
+        transform: translateX(140%);
+    }
 }

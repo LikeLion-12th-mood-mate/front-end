@@ -1,12 +1,12 @@
 import React from 'react'
 
-import chat from '../../../assets/footer/notconsult.svg';
+import chat from '../../../assets/chat/chatmodal.svg';
 function Modal() {
   return (
-    <div className='gotochat-wrap'>
+    <button className='gotochat-wrap'>
         <img src={chat} alt='gotochat'/>
-        <p>바로 상담</p>
-    </div>
+        바로 상담
+    </button>
   )
 }
 
