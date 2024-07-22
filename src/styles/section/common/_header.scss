@@ -1,0 +1,9 @@
+.header-wrap{
+    @include flexbox(between,center);
+    .backward{
+        @include imgsize(50px,50px)
+    }
+    .gotochat{
+        @include imgsize(36px,36px)
+    }
+}

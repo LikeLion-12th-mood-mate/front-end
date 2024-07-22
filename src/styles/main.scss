@@ -9,6 +9,8 @@
 
 @import "./mixins/flexbox";
 @import "./mixins/position";
+@import "./mixins/imgsize";
+@import "./mixins/textstyle";
 
 @import "./modules/buttons";
 @import "./modules/inputs";
@@ -20,3 +22,5 @@
 @import "./section/sgcomplete";
 @import "./section/chat";
 @import "./section/footer";
+@import "./section/counselor";
+@import "./section/common/header";
