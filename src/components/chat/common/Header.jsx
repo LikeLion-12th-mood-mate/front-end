@@ -8,11 +8,13 @@ import { Link } from 'react-router-dom'
 function Header({isVisible,link}) {
   return (
     <div className='header-wrap'>
-        <Link to={`/${link}`}>
+        <Link to={link===-1 ? -1 :`/${link}`}>
             <img src={backward} className='backward' alt='backward'/>
         </Link> 
         {isVisible ? 
-            <img src={gotochat} className='gotochat' alt='gotochat'/> :
+            <Link to='/chatlist'>
+              <img src={gotochat} className='gotochat' alt='gotochat'/>
+            </Link>  :
             ''     
         }
         
