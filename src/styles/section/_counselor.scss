@@ -29,9 +29,64 @@
         width: 100%;
         background-color: $card;
         padding: 12px 14px;
+        margin-bottom: 36px;
         p{
             @include text-style(16px,400,$black);
             line-height: 28.8px;
         }
+    }
+    .counselor-program-wrap{
+        padding-left: 20px;
+        width: 100%;
+        .program{
+            .title{
+                @include text-style(16px,700,$black);
+                margin-bottom: 24px;
+            }
+            .program-card-wrap{
+                @include flexbox(start,center);
+                flex-wrap: nowrap;
+                overflow: hidden;
+                overflow-x: auto;
+                -ms-overflow-style: none;
+                scrollbar-width: none; 
+                .program-card{
+                    padding: 16px;
+                    border-radius: 8px;
+                    border: 1px solid $grey;
+                    width: 329px;
+                    margin-right: 24px;
+                    margin-bottom: 50px;
+                    flex-shrink: 0;
+                    cursor: pointer;
+                    .program-title{
+                        @include text-style(16px,700,$black);
+                        margin-bottom: 12px;
+                    }
+                    .time-place-wrap{
+                        @include flexbox(start,center);
+                        margin-bottom: 28px;
+                        img{
+                            @include imgsize(19px,19px);
+                            margin-right:12px;
+                        }
+                        p{
+                            @include text-style(12px,400,$black);
+                            margin-right: 12px;
+                        }
+                    }
+                    .program-desc{
+                        @include text-style(14px,400,$black);
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 9;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+            }
+            
+        }
+        
     }
 }
