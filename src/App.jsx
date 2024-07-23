@@ -3,6 +3,7 @@ import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } fro
 import { Suspense,lazy } from 'react';
 import Complete from './components/signup/Complete';
 import Footer from './components/footer/Footer';
+import Conversation from './components/conversation/Conversation';
 
 const Login = lazy(() => import('./components/Login/Login'));
 const Mainpage = lazy(() => import('./components/main/MainPage'));
@@ -46,6 +47,10 @@ const router =createBrowserRouter([
     [
       {path:'/consult/:id',element:<Footer footerState='consult'/>},
     ]
+  },
+  {
+    path:'/chat/:id',
+    element: <Conversation/>,
   },
   {
     path:'/chatlist',

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+
 import Gridwrap from '../grid/Gridwrap';
 import Header from '../chat/common/Header';
 import GetChatList from '../../api/chatlist/GetChatList';
@@ -37,7 +39,9 @@ function ChatList() {
             <h3>진행중인 상담</h3>
             <ul className='chatlist-card-wrap'>
                 {chatList.map((item)=>(
-                    <ChatListItem item={item}/>
+                    <Link to={`/chat/${item.id}`}>
+                        <ChatListItem item={item}/>
+                    </Link> 
                 ))}
             </ul>
             

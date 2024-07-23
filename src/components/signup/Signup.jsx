@@ -42,7 +42,7 @@ function Signup() {
         event.preventDefault();
         if(isCertified){
             if(passwordRef.current?.value!==''){
-                //const response = PostSignup()
+                const response = PostSignup(emailRef.current?.value,passwordRef.current?.value)
                 navigate('/complete')
             }
             else{
