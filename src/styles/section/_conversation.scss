@@ -1,0 +1,16 @@
+.conversation{
+    background-color: #DBE5DF;
+    height: 100vh;
+    .header-bg{
+        background-color: #ECF2EE;
+        height: 158px;
+        .header-wrap{
+            padding-top: 36px;
+        }
+        .name{
+            @include text-style(24px,700,$black);
+            text-align: center;
+        }
+    }
+
+}

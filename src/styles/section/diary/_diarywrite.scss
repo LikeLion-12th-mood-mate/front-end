@@ -1,0 +1,149 @@
+.bg-dark{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+    @media (min-width:768px) {
+        width: 430px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+.diarywrite{
+    background-color: $white;
+    .header-bg{
+        background-color: #ECF2EE;
+        height: 124px;
+        padding-bottom: 16px;
+        .header-wrap{
+            padding-top: 72.5px
+        }
+    }
+    .diarycontent-wrap{
+        padding-top: 34px;
+        .content-header-wrap{
+            @include flexbox(between,center);
+            margin-bottom: 20px;
+            .content-header{
+                @include text-style(24px,700,$black);
+            }
+            .modalimg{
+                @include imgsize(29px,28px);
+                cursor: pointer;
+            }
+        }
+        .keyword-wrap{
+            margin-bottom: 16px;
+            @include flexbox(start,center);
+            flex-wrap: nowrap;
+            overflow: hidden;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none; 
+            .keyword{
+                @extend %btn-base;
+                @include text-style(14px,400,$black);
+                padding: 8px 16px;
+                margin-right: 8px;
+                background-color: $white;
+                border: 1px solid $black;
+                flex-shrink: 0;
+            }
+        }
+        .input-content{
+            width: 100%;
+            height: 500px;
+            @include text-style(16px,400,$grey);
+
+        }
+    }
+}
+
+.analyst-modal-wrap{
+    position: fixed;
+    padding: 10px 20px;
+    @extend %btn-base;
+    border-radius: 50px;
+    background-color: $deep-green;
+    right: 20px;
+    bottom: 150px;
+    @include text-style(14px,400,$white);
+    .analyst-image{
+        @include imgsize(28px,28px);
+        margin-right: 7px;
+    }
+    @media(min-width:768px) {
+        right: 50%;
+        transform: translateX(160%);
+    }
+}
+
+.diarywrite-modal{
+    position: absolute;
+    width: 100%;
+    height: 550px;
+    left: 0;
+    bottom: 0;
+    background-color: $white;
+    border-radius: 24px 24px 0 0;
+    z-index: 2;
+    animation: diarymodal-slide-up 0.1s ease-in-out;
+    padding: 32px 26px;
+   
+        .close-wrap{
+            position: relative;
+            .close{
+                @include imgsize(20px,20px);
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                cursor: pointer;
+            }
+        }
+        .scroll-wrap{
+            overflow:hidden;
+            overflow-y: auto;
+            height: 100%;
+            -ms-overflow-style: none;
+            scrollbar-width: none; 
+            .keyword-wrap{
+                padding: 16px 0;
+                width: 100%;
+                @include flexbox(start,start);
+                flex-wrap: wrap;
+                border-bottom: 1px solid $grey;
+                &:nth-of-type(5){
+                    border-bottom: none;
+                }
+                .keyword{
+                    @extend %btn-base;
+                    @include text-style(14px,400,$black);
+                    margin:0 14px 14px 0;
+                    padding: 8px 16px;
+                    border: 1px solid $grey;
+                    background-color: $white;
+                    &:nth-of-type(4){
+                        margin-bottom: 0;
+                    }
+                    &:nth-of-type(5){
+                        margin-bottom: 0;
+                    }
+                    &.selected{
+                        background-color: $light-green ;
+                        border-color: $green;
+                    }
+                }
+            }
+        }
+        @keyframes diarymodal-slide-up {
+            0%{
+                transform: translateY(550px);
+            }
+            100%{
+                transform: translateY(0);
+            }
+        }
+};
