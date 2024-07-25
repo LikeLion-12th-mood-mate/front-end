@@ -11,8 +11,8 @@ function Login() {
   const handleLogin= async(event)=>{
     event.preventDefault();
     if(idRef.current.value!=='' & pwRef.current.value!==''){
-      //const response = PostLogin(idRef.current.value,pwRef.current.value)
-      //console.log(response)
+      const response = PostLogin(idRef.current.value,pwRef.current.value)
+      console.log(response)
       navigate('/home')
     }
     else{

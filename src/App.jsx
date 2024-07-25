@@ -4,16 +4,19 @@ import { Suspense,lazy } from 'react';
 import Complete from './components/signup/Complete';
 import Footer from './components/footer/Footer';
 import Conversation from './components/conversation/Conversation';
+import Analyst from './components/diary/analyst/Analyst';
+
 
 const Login = lazy(() => import('./components/Login/Login'));
 const Mainpage = lazy(() => import('./components/main/MainPage'));
 const Consult = lazy(()=>import('./components/chat/Chat'));
 const Category = lazy(()=> import('./components/category/Category'));
 const Diary = lazy(()=>import("./components/diary/Diary"));
+const DiaryWrite = lazy(()=>import("./components/diary/diarywrite/DiaryWrite"));
 const Signup = lazy(()=>import("./components/signup/Signup"));
 const ConsultDetail = lazy(()=>import("./components/chat/detail/ConsultDetail"));
 const ChatList = lazy(()=>import("./components/chatlist/ChatList"));
-
+const DiaryAnalyst = lazy(()=>import("./components/diary/analyst/Analyst"));
 const router =createBrowserRouter([
   {
     path:'/',
@@ -66,6 +69,16 @@ const router =createBrowserRouter([
     path:'/diary',
     element: <Diary/>,
     children:[{path:'/diary',element:<Footer footerState='diary'/>}]
+  },
+  {
+    path:'/diary/:date',
+    element: <DiaryWrite/>,
+    children:[{path:'/diary/:date',element:<Footer footerState='diary'/>}]
+  },
+  {
+    path:'/diary/:date/analyst',
+    element: <Analyst/>,
+    children:[{path:'/diary/:date/analyst',element:<Footer footerState='diary'/>}]
   },
 ]);
 

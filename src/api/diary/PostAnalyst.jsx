@@ -1,10 +1,10 @@
-import React from 'react';
-import axios from 'axios';
-async function PostLogin(props) {
+import React from 'react'
+import axios from 'axios'
+async function PostAnalyst(props) {
     try{
         const response = await axios.post(`url`,{
-            id:props.eamil,
-            pw:props.pw
+            
+            
         })
         return response.data
     }
@@ -13,4 +13,4 @@ async function PostLogin(props) {
     }
 }
 
-export default PostLogin
+export default PostAnalyst
