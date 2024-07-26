@@ -13,7 +13,7 @@ function ChatHeader(props) {
             </Link> 
         </div>
         <div className='search-input-wrap'>
-            <input className='search-input' placeholder='찾고 계신 상담사님이 따로 있으신가요?'/>
+            <input ref={props.inputRef} className='search-input' onKeyPress={props.handleEnter}  placeholder='찾고 계신 상담사님이 따로 있으신가요?'/>
             <img src={search} className='search-image'/>
         </div>
     </div>
