@@ -3,10 +3,10 @@ import star from '../../assets/chat/star.svg';
 import { Link } from 'react-router-dom';
 
 function Card(props) {
-    console.log("card props:",props.consultData)
+  
   return (
     <ul className='card-wrap'>
-        {props.consultData.map((data,index)=>(
+        {props.consultData?.map((data,index)=>(
           <Link to={`/consult/${data.id}`}>
             <li key={data.id} className='card'>
                 <p className='title'>{data.category}</p>

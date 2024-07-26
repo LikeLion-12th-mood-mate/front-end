@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ChatHeader from './ChatHeader'
 import KeywordButton from './KeywordButton';
 import Cardwrap from './Cardwrap';
 import Card from './Card';
 import GetChatInfo from '../../api/chat/GetChatInfo';
-import Footer from '../footer/Footer';
 import { Outlet } from 'react-router-dom';
 import Gridwrap from '../grid/Gridwrap';
 const dummydata = [
@@ -38,8 +37,15 @@ const dummytitle = [
 
 ]
 function Chat() {
-  const [search,setSearch] = useState();
+  const [searchTerm,setSearchTerm] = useState();
   const [consultData,setConsultData] = useState([]);
+  const [results,setResults] = useState();
+  const inputRef = useRef();
+  const handleEnter=()=>{
+    setSearchTerm(inputRef.current.value);
+  }
+  console.log("searchterm:",searchTerm)
+  console.log("results:",results)
   useEffect(()=>{
     const getConsultData = async()=>{
       //const response = GetChatInfo();
@@ -49,23 +55,28 @@ function Chat() {
     }
     getConsultData();
   },[])
-  console.log(consultData)
+  useEffect(()=>{
+    if(searchTerm){
+      const filteredResults = consultData.filter(item=>item.name.includes(searchTerm));
+      setResults(filteredResults);
+    }
+    else{
+      
+    }
+  },[searchTerm])
   return (
     <div className='chat'>
-      <ChatHeader search={search} setSearch={setSearch}/>
+      <ChatHeader inputRef={inputRef} handleEnter={handleEnter} search={searchTerm} setSearch={setSearchTerm}/>
         <Gridwrap>
          <div className='chat-wrap'>
               <KeywordButton/>
               {dummytitle.map((data)=>(
                 <Cardwrap title={data.title}>
-                  <Card consultData={consultData}/>
+                  {searchTerm  ? <Card consultData={results}/> :<Card consultData={consultData}/>}
                 </Cardwrap>
               ))}
-              
-            </div>
+          </div>
         </Gridwrap>
-           
-          
       <Outlet/>
     </div>
   )
