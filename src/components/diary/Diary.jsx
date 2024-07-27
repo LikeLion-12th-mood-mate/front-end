@@ -10,14 +10,13 @@ import Analyst from './Analyst';
 const dummydata = {
   "status": 200,
   "data": {
-      "totalTime": "02:13:20", // hh-mm-ss
       "calendar": [
           {
-              "attendanceId": 1,
+              "Id": 1,
               "date": "2024-07-23",
           },
           {
-              "attendanceId": 2,
+              "Id": 2,
               "date": "2024-07-24",
           }
       ]

@@ -3,6 +3,7 @@ import ChatHeader from './ChatHeader'
 import KeywordButton from './KeywordButton';
 import Cardwrap from './Cardwrap';
 import Card from './Card';
+import Search from './Search';
 import GetChatInfo from '../../api/chat/GetChatInfo';
 import { Outlet } from 'react-router-dom';
 import Gridwrap from '../grid/Gridwrap';
@@ -39,13 +40,27 @@ const dummytitle = [
 function Chat() {
   const [searchTerm,setSearchTerm] = useState();
   const [consultData,setConsultData] = useState([]);
-  const [results,setResults] = useState();
+  const [results,setResults] = useState([]);
+  const [kindOfKeyword,setKindOfKeyword] = useState();
+  const [searchModal,setSearchModal] = useState(false)
   const inputRef = useRef();
   const handleEnter=()=>{
-    setSearchTerm(inputRef.current.value);
+    console.log("handleEnter 호출됨");
+    setSearchTerm(inputRef?.current?.value);
+    setSearchModal(false)
   }
   console.log("searchterm:",searchTerm)
   console.log("results:",results)
+  const handleKeyword=(name)=>{
+    if(kindOfKeyword===name){
+      setKindOfKeyword('')
+    }
+    else{
+      setKindOfKeyword(name)
+    }
+  }
+  
+
   useEffect(()=>{
     const getConsultData = async()=>{
       //const response = GetChatInfo();
@@ -60,24 +75,24 @@ function Chat() {
       const filteredResults = consultData.filter(item=>item.name.includes(searchTerm));
       setResults(filteredResults);
     }
-    else{
-      
-    }
   },[searchTerm])
   return (
     <div className='chat'>
-      <ChatHeader inputRef={inputRef} handleEnter={handleEnter} search={searchTerm} setSearch={setSearchTerm}/>
+      {searchModal?
+      <Search inputRef={inputRef} handleEnter={handleEnter} searchModal={searchModal} setSearchModal={setSearchModal}/>
+      : <ChatHeader inputRef={inputRef} searchModal={searchModal} setSearchModal={setSearchModal} handleEnter={handleEnter} search={searchTerm} setSearch={setSearchTerm}/>}
+      
         <Gridwrap>
          <div className='chat-wrap'>
-              <KeywordButton/>
+              <KeywordButton handleKeyword={handleKeyword} kindOfKeyword={kindOfKeyword}/>
               {dummytitle.map((data)=>(
-                <Cardwrap title={data.title}>
-                  {searchTerm  ? <Card consultData={results}/> :<Card consultData={consultData}/>}
+                <Cardwrap searchTerm={searchTerm} title={data.title}>
+                  {searchTerm  ? results.length<=0 ? '검색결과가 없습니다' :<Card searchTerm={searchTerm} consultData={results}/> :<Card consultData={consultData}/>}
                 </Cardwrap>
               ))}
           </div>
         </Gridwrap>
-      <Outlet/>
+      {searchModal ?'' : <Outlet/>}
     </div>
   )
 }

@@ -3,7 +3,8 @@ import axios from 'axios'
 async function PostAnalyst(props) {
     try{
         const response = await axios.post(`url`,{
-            
+            "title": props.title,
+
             
         })
         return response.data

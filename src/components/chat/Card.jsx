@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Card(props) {
   
   return (
-    <ul className='card-wrap'>
+    <ul className={props.searchTerm ? 'card-wrap active' : 'card-wrap'}>
         {props.consultData?.map((data,index)=>(
           <Link to={`/consult/${data.id}`}>
             <li key={data.id} className='card'>
