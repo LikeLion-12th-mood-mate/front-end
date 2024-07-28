@@ -11,23 +11,19 @@ import CertifiedCount from './CertifiedCount';
 import Modal from './Modal';
 import { useNavigate } from 'react-router-dom';
 import Gridwrap from '../grid/Gridwrap';
-const dummydata={
-    certified:'1234'
-}
 function Signup() {
     const [isCertified, setIsCertified] = useState(false);
     const [isPasswordShow, setIsPasswordShow] = useState(false);
     const [isButtonClick,setIsButtonClick] = useState(false);
     const [userCertifiedCode,setUserCertifiedCode] = useState();
-    
 
-    const [count, setCount] = useState(600); 
+    const [count, setCount] = useState(2); 
     const [getCertifiedCode, setGetCertifiedCode] = useState();
 
     const emailRef = useRef();
     const kindOfEmailRef = useRef();
     const passwordRef = useRef();
-
+    const nicknameRef = useRef();
     const navigate = useNavigate();
     useEffect(()=>{
         if(userCertifiedCode!==undefined && getCertifiedCode!==undefined && userCertifiedCode===getCertifiedCode?.certified){
@@ -38,39 +34,30 @@ function Signup() {
         }
     },[userCertifiedCode])
     
-    const handleButton=(event)=>{
+    const handleButton=async (event)=>{
         event.preventDefault();
-        if(isCertified){
-            if(passwordRef.current?.value!==''){
-                const response = PostSignup(emailRef.current?.value,passwordRef.current?.value)
+        if(passwordRef.current?.value!==''&&emailRef.current?.value!==''&&nicknameRef.current?.value!==''){
+            const emaildata=emailRef.current?.value;
+            const pwdata=passwordRef.current?.value;
+            const nicknamedata=nicknameRef.current?.value;
+            const kindOfEmailData=kindOfEmailRef?.current?.value;
+            const response = await PostSignup({email:`${emaildata}@${kindOfEmailData}`,nickname:nicknamedata,password:pwdata})
+            if(response.status===200){
+                console.log(response.data?.token)
+                localStorage.setItem("token",response.data?.token)
                 navigate('/complete')
+                console.log("사용자 닉네임",`${emaildata}@${kindOfEmailData}`)
             }
             else{
-                alert('비밀번호를 입력해주세요')
+                alert('이미 해당계정을 사용하고 있어요!')
             }
             
         }
         else{
-            if(emailRef.current?.value!==''){
-                setIsButtonClick(true);
-                setCount(600)
-                //const response = PostEmail({})
-                //console.log(response)
-                setGetCertifiedCode(dummydata);
-            }
-            else{
-                alert('이메일을 입력해주세요')
-                setIsError(true)
-            }
-            
+            alert('정보를 입력해주세요')
         }
         
     }
-    console.log("시간",count)
-    console.log("사용자 코드",userCertifiedCode)
-    console.log("이메일 코드",getCertifiedCode?.certified)
-    console.log("이메일===사용자:",isCertified)
-    console.log("이메일 종류",kindOfEmailRef.current?.value)
   return (
     <section className='signup'>
         <Gridwrap>
@@ -93,23 +80,18 @@ function Signup() {
                            </div>
                           
                         </div>
-                        <div className='certified-wrap'>
-                            <img src={isCertified ? Check : Uncheck} className='certified-check' alt='check-image' />
-                            <input className='certified' onChange={(e)=>setUserCertifiedCode(e.target.value)} placeholder='인증 코드를 입력해주세요'/>
-                            {isButtonClick?  <CertifiedCount isButtonClick={isButtonClick} count={count} setCount={setCount}/> : ''}
-                            
-                        </div>
-                       
-                        <p className={isCertified ? 'is-certified active' : 'is-certified'} >{isCertified ?'인증이 완료되었어요':'인증이 안되었어요'}</p>
                         <div className='password-wrap'>
                             <input className='pw' ref={passwordRef} type={`${isPasswordShow ? '':'password'}`} placeholder='비밀번호를 입력해주세요'/>
                             <img src={isPasswordShow ? IsShow : IsNotShow} onClick={()=> setIsPasswordShow(!isPasswordShow)} className='show-password' alt='show-password' />
                         </div>
+                        <div className='nickname-wrap'>
+                            <input ref={nicknameRef} className='nickname' placeholder='닉네임을 입력해주세요'/>
+                        </div>
 
                         <form>
-                            <button className='check-button' onClick={handleButton} >{isCertified ? '회원가입 완료하기':'메일받기'}</button>
+                            <button className='check-button' onClick={handleButton} >회원가입 완료하기</button>
                         </form>
-                        {isButtonClick&&count>598? <Modal count={count}/> : ''}
+                        {/* {isButtonClick&&count>598? <Modal count={count}/> : ''} */}
                     </div>
         </Gridwrap>
                     
