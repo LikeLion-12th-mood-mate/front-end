@@ -5,7 +5,7 @@ import house from '../../../assets/chat/house.svg'
 function ProgramItem({counselor}) {
   return (
     <li className='program-card'>
-                <h3 className='program-title'>나를 찾아가는 여정</h3>
+                <h3 className='program-title'>{counselor?.name}</h3>
                     <div className='time-place-wrap'>
                         <img src={time} alt='time'/>
                         <p>매주 (수) {counselor?.programtime}</p>

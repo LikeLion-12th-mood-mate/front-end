@@ -1,13 +1,17 @@
 import React from 'react'
 import axios from 'axios'
-
-async function GetChatList() {
+//모든 채팅방 전체 조회
+async function GetChatList({token}) {
     try{
-        const response = await axios.get(`url${props.id}`)
+        const response = await axios.get(`http://116.121.184.161:9001/chat/main`,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+        })
         return response.data
     }
     catch(error){
-        return
+        return new Error(error)
     }
 }
 

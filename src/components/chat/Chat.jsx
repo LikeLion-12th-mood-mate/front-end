@@ -44,9 +44,12 @@ function Chat() {
   const [kindOfKeyword,setKindOfKeyword] = useState();
   const [searchModal,setSearchModal] = useState(false)
   const inputRef = useRef();
-  const handleEnter=()=>{
+  const handleEnter=async()=>{
     console.log("handleEnter 호출됨");
     setSearchTerm(inputRef?.current?.value);
+    const response = await GetChatInfo(inputRef?.current?.value)
+    console.log('검색결과',response.data)
+    setResults(response.data)
     setSearchModal(false)
   }
   console.log("searchterm:",searchTerm)
@@ -63,19 +66,14 @@ function Chat() {
 
   useEffect(()=>{
     const getConsultData = async()=>{
-      //const response = GetChatInfo();
-      //console.log(response.data);
-      //setConsultData(response.data)
-      setConsultData(dummydata)
+      const response = await GetChatInfo();
+      setConsultData(response.data)
+      //setConsultData(dummydata)
     }
     getConsultData();
   },[])
-  useEffect(()=>{
-    if(searchTerm){
-      const filteredResults = consultData.filter(item=>item.name.includes(searchTerm));
-      setResults(filteredResults);
-    }
-  },[searchTerm])
+  console.log('consultdata:' , consultData)
+
   return (
     <div className='chat'>
       {searchModal?
@@ -85,11 +83,34 @@ function Chat() {
         <Gridwrap>
          <div className='chat-wrap'>
               <KeywordButton handleKeyword={handleKeyword} kindOfKeyword={kindOfKeyword}/>
-              {dummytitle.map((data)=>(
-                <Cardwrap searchTerm={searchTerm} title={data.title}>
-                  {searchTerm  ? results.length<=0 ? '검색결과가 없습니다' :<Card searchTerm={searchTerm} consultData={results}/> :<Card consultData={consultData}/>}
-                </Cardwrap>
-              ))}
+              {searchTerm ? results.length<=0 ? '검색결과가 없습니다' :<Card searchTerm={searchTerm} consultData={results}/>:
+              <>
+              <Cardwrap searchTerm={searchTerm} title={'아이와 마찰이 너무 심할 때 필요한 전문가'}>
+                  {searchTerm  ? results.length<=0 ? '검색결과가 없습니다' :<Card searchTerm={searchTerm} consultData={results}/> :<Card consultData={consultData} category='아동/청소년 상담'/>}
+              </Cardwrap>
+              <Cardwrap searchTerm={searchTerm} title={'직장에서 벌어진 일들 여기에 다 털어놓고 가세요'}>
+                  {searchTerm  ? results.length<=0 ? '검색결과가 없습니다' :<Card searchTerm={searchTerm} consultData={results}/> :<Card consultData={consultData}category='직장 상담'/>}
+              </Cardwrap>
+              <Cardwrap searchTerm={searchTerm} title={'나의 배우자와 소통이 어려울때 필요한 전문가'}>
+                  {searchTerm  ? results.length<=0 ? '검색결과가 없습니다' :<Card searchTerm={searchTerm} consultData={results}/> :<Card consultData={consultData}category='부부 상담'/>}
+              </Cardwrap>
+              <Cardwrap searchTerm={searchTerm} title={'불안에 대한 모든 고민을 도와주시는 전문가'}>
+                  {searchTerm  ? results.length<=0 ? '검색결과가 없습니다' :<Card searchTerm={searchTerm} consultData={results}/> :<Card consultData={consultData}category='불안 상담'/>}
+              </Cardwrap>
+              <Cardwrap searchTerm={searchTerm} title={'우울증에 대한 모든 고민을 도와주시는 전문가'}>
+                  {searchTerm  ? results.length<=0 ? '검색결과가 없습니다' :<Card searchTerm={searchTerm} consultData={results}/> :<Card consultData={consultData}category='우울증 상담'/>}
+              </Cardwrap>
+              <Cardwrap searchTerm={searchTerm} title={'지금, 중독으로 힘들지는 않으신가요?'}>
+                  {searchTerm  ? results.length<=0 ? '검색결과가 없습니다' :<Card searchTerm={searchTerm} consultData={results}/> :<Card consultData={consultData}category='중독 상담'/>}
+              </Cardwrap>
+              <Cardwrap searchTerm={searchTerm} title={'스트레스에 대한 모든 고민을 도와주시는 전문가'}>
+                  {searchTerm  ? results.length<=0 ? '검색결과가 없습니다' :<Card searchTerm={searchTerm} consultData={results}/> :<Card consultData={consultData}category='스트레스 상담'/>}
+              </Cardwrap>
+              <Cardwrap searchTerm={searchTerm} title={'여러분은 어디에서나 필요한 사람입니다'}>
+                  {searchTerm  ? results.length<=0 ? '검색결과가 없습니다' :<Card searchTerm={searchTerm} consultData={results}/> :<Card consultData={consultData}category='자존감 상담'/>}
+              </Cardwrap>
+              </>
+              }
           </div>
         </Gridwrap>
       {searchModal ?'' : <Outlet/>}

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Gridwrap from '../../grid/Gridwrap';
 import Emotion from './Emotion';
 import Advice from './Advice';
+import GetCalendar from '../../../api/diary/GetCalendar';
 const dummydata={
     emotion:[
         {
@@ -30,12 +31,13 @@ const dummydata={
 function Analyst() {
     const [analystData,setAnalystData]= useState();
     const {date} = useParams();
+    const token = sessionStorage.getItem('token')
     const [year,month,day] = date.split('-').map(Number);
     useEffect(()=>{
-        const getAnalyst=()=>{
-            //const response=getAnalystData();
+        const getAnalyst=async()=>{
+            //const response=await GetCalendar({token:token});
             //setAnalystData(response.data);
-            //console.log(analystData)
+            //console.log(response)
             setAnalystData(dummydata)
         }
         getAnalyst();

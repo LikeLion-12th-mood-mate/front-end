@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from 'react-router-dom';
 
 import MainLogo from '../../assets/service-logo.svg';
@@ -13,7 +13,10 @@ function Login() {
   const pwRef = useRef();
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
+  const isauth = useSelector(
+    (state) => state.auth.isAuthenticated
+  );
+  
   const handleLogin= async(event)=>{
     event.preventDefault();
     if(idRef.current.value!=='' & pwRef.current.value!==''){
@@ -23,12 +26,14 @@ function Login() {
         const response = await PostLogin({email:emailData,password:pwData})
         if (response.status === 200) {
           console.log('로그인 성공');
-          localStorage.setItem("loginId", emailData);
-          localStorage.setItem("password", pwData);
-
-          dispatch(loginActions.login({ emailData, pwData }));
+          console.log(response.data)
+          sessionStorage.setItem('email', emailData);
+          sessionStorage.setItem("password", pwData);
+          sessionStorage.setItem("token", response.data.token);
+          
+          dispatch(loginActions.login({ email:emailData,password:pwData }));
           dispatch(authActions.login());
-
+          console.log("아이디전역상태:",isauth)
           navigate('/home');
         } else {
           alert('이메일, 비밀번호를 확인해주세요')

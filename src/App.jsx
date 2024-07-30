@@ -5,7 +5,9 @@ import Complete from './components/signup/Complete';
 import Footer from './components/footer/Footer';
 import Conversation from './components/conversation/Conversation';
 import Analyst from './components/diary/analyst/Analyst';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { authActions } from './store/auth';
 
 const Login = lazy(() => import('./components/Login/Login'));
 const Mainpage = lazy(() => import('./components/main/MainPage'));
@@ -17,6 +19,27 @@ const Signup = lazy(()=>import("./components/signup/Signup"));
 const ConsultDetail = lazy(()=>import("./components/chat/detail/ConsultDetail"));
 const ChatList = lazy(()=>import("./components/chatlist/ChatList"));
 const DiaryAnalyst = lazy(()=>import("./components/diary/analyst/Analyst"));
+
+// function ProtectedRoute({ link,children }) {
+//   const isauth = useSelector((state) => state.auth.isAuthenticated);
+//   const dispatch = useDispatch()
+//   if( sessionStorage.getItem('email')){
+//     dispatch(authActions.login());
+//   }
+//   else{
+//     dispatch(authActions.logout());
+//   }
+//   console.log(isauth)
+//   if (!isauth) {
+//     return children
+//   }
+//   else{
+//     return <p>로그인을 먼저 해주세요</p>
+//   }
+// }
+
+
+
 const router =createBrowserRouter([
   {
     path:'/',
@@ -32,7 +55,7 @@ const router =createBrowserRouter([
   },
   {
     path:'/home',
-    element: <Mainpage/>,
+    element: <Mainpage/> ,
     children:[{path:'/home',element:<Footer footerState='home'/>}]
   },
   {
@@ -83,6 +106,8 @@ const router =createBrowserRouter([
 ]);
 
 function App() {
+
+
   return (
     <Suspense fallback="loading...">
       <RouterProvider router={router}/>
