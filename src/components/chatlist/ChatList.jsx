@@ -23,13 +23,19 @@ const dummydata = [
 ]
 function ChatList() {
     const [chatList,SetChatList] = useState([]);
+    const token = sessionStorage.getItem('token')
+    const handleOnclick =(roomId) => {
+        sessionStorage.setItem('roomId',roomId)
+
+    }
     useEffect(()=>{
-        const getConsultList=()=>{
-            // const response = GetChatList();
-            // SetChatList(response.data)
-            // console.log(response.data)
-            SetChatList(dummydata);
+        const getConsultList=async()=>{
+             const response =await GetChatList({token:token});
+             SetChatList(response)
+             console.log('모든채팅방 조회',response)
+             //SetChatList(dummydata);
         }
+        //상대방이 이름 나는 토큰값
         getConsultList();
     },[])
   return (
@@ -38,9 +44,9 @@ function ChatList() {
             <Header isVisible={true} link={-1}/>
             <h3>진행중인 상담</h3>
             <ul className='chatlist-card-wrap'>
-                {chatList.map((item)=>(
-                    <Link to={`/chat/${item.id}`}>
-                        <ChatListItem item={item}/>
+                {chatList?.map((item)=>(
+                    <Link to={`/chat/${item.opponentUser}`}>
+                        <ChatListItem item={item} handleOnclick={()=>handleOnclick(item.roomId)}/>
                     </Link> 
                 ))}
             </ul>

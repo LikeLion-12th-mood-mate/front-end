@@ -1,9 +1,9 @@
 import React from 'react'
 
 import chat from '../../../assets/chat/chatmodal.svg';
-function Modal() {
+function Modal({handleModalClick}) {
   return (
-    <button className='gotochat-wrap'>
+    <button type='button' className='gotochat-wrap' onClick={handleModalClick}>
         <img src={chat} alt='gotochat'/>
         바로 상담
     </button>

@@ -111,7 +111,11 @@
             width: 100%;
             margin-bottom: 36px;
             &.active{
-                margin-bottom: 0;
+                @include column-flexbox(start,center);
+                flex-wrap: nowrap;
+                overflow: none;
+                overflow-x: none;
+                margin-bottom: 60px;
             }
             .card{
                 display: block;
@@ -122,6 +126,10 @@
                 margin-right: 20px;
                 padding: 0 20px;
                 cursor: pointer;
+                &.active{
+                    margin-bottom: 20px;
+                    width: 100%;
+                }
                 .title{
                     font-size: 14px;
                     font-weight: 700;
@@ -140,6 +148,7 @@
                         border-radius: 50%;
                         flex-shrink: 0;
                         margin-right: 20px;
+                        background-size: 70px;
                     }
                     .info{
                         width: 100%;

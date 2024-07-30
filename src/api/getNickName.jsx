@@ -1,10 +1,10 @@
 import React from 'react'
 import axios from 'axios'
-
-async function GetCalendar({token}) {
+async function getNickName() {
+    const token = sessionStorage.getItem('token')
     try{
-        const response = await axios.get(`http://116.121.184.161:9001/diary/read`,{
-            headers: {
+        const response = await axios.get(`http://116.121.184.161:9001/api/v1/member/findNickname`,{
+            headers:{
                 'Authorization': `Bearer ${token}`
             }
         })
@@ -15,4 +15,4 @@ async function GetCalendar({token}) {
     }
 }
 
-export default GetCalendar
+export default getNickName

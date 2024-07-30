@@ -1,18 +1,18 @@
 import React from 'react'
 import axios from 'axios'
-
-async function GetCalendar({token}) {
+async function getChatMain({token}) {
     try{
-        const response = await axios.get(`http://116.121.184.161:9001/diary/read`,{
+        const response = await axios.get(`http://116.121.184.161:9001/chat/main`,{
             headers: {
                 'Authorization': `Bearer ${token}`
-            }
+            },
+            
         })
-        return response.data
+        return response
     }
     catch(error){
         return new Error(error)
     }
 }
 
-export default GetCalendar
+export default getChatMain

@@ -6,7 +6,7 @@ function DiaryContent(props) {
   return (
     <div className='diarycontent-wrap'>
       <div className='content-header-wrap'>
-        <h3 className='content-header'>박서현님의 하루는 어땠나요?</h3>
+        <h3 className='content-header'>{props.nickname}님의 하루는 어땠나요?</h3>
         <img src={props.modalopen? modalopen : modal} className='modalimg' alt='modal' onClick={()=>props.setModalOpen(!props.modalopen)}/>
       </div>
       <div className='keyword-wrap'>

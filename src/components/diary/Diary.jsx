@@ -7,6 +7,8 @@ import moment from 'moment';
 import Gridwrap from '../grid/Gridwrap'
 import GetAnalystData from '../../api/diary/GetAnalystData';
 import Analyst from './Analyst';
+import getNickName from '../../api/getNickName';
+import getCalendar from '../../api/diary/GetCalendar';
 const dummydata = {
   "status": 200,
   "data": {
@@ -50,13 +52,15 @@ function Diary() {
   const [calendarData,setCalendarData] = useState();
   const [analystData,setAnalystData] = useState();
   const [selectDate,setSelectDate] = useState('');
+  const [nickname,setNickname] = useState('');
+  const token = sessionStorage.getItem('token')
   const navigate = useNavigate();
   const formatDay = (locale, date) => date.getDate();
   const formatShortWeekday = (locale, date) => {
     const weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
     return weekdays[date.getDay()];
   };
-  const highlightedDates = calendarData?.data?.calendar?.map(item => new Date(item.date)) || [];
+  const highlightedDates = calendarData?.map(item => new Date(item.time)) || [];
   
   const tileClassName = ({ date, view }) => {
     if (view === 'month') {
@@ -87,18 +91,22 @@ function Diary() {
     }
   };
   useEffect(()=>{
-    const getCalendarData = ()=>{
-      // const response = getCalendar()
-      // setCalendarData(response.data);
-      // console.log(response.data)
-      setCalendarData(dummydata);
+    const getCalendarData = async()=>{
+      const response = await getCalendar({token:token})
+      const response2=await getNickName();
+      console.log(response2.nickname)
+      console.log(response)
+       setCalendarData(response);
+       //console.log(response.data)
+      //setCalendarData(dummydata);
+      setNickname(response2.nickname)
     }
     getCalendarData()
   },[])
   return (
     <section className='diary'>
       <Gridwrap>
-        <h3 className='header'>박서현님의 하루는 어땠나요? <br/> 오늘의 심리상태를 기록해보세요</h3>
+        <h3 className='header'>{nickname}님의 하루는 어땠나요? <br/> 오늘의 심리상태를 기록해보세요</h3>
       </Gridwrap>
       <div className='calendar-container'>
         <Calendar
@@ -113,7 +121,7 @@ function Diary() {
         />
       </div>
       <Gridwrap>
-      {selectDate ? <Analyst analystData={analystData} selectDate={selectDate}/> : ''}
+      {selectDate ? <Analyst analystData={calendarData} selectDate={selectDate}/> : ''}
         
       </Gridwrap>
      

@@ -50,6 +50,19 @@
                 }
             }
         }
+        //닉네임 설정
+        .nickname-wrap{
+            display: block;
+            width: 100%;
+            position: relative;
+            .nickname{
+                @extend %input-base;
+                width: 100%;
+                border-radius: 0px;
+                border-bottom: 1px solid $grey;
+                margin-bottom: 24px;
+            }
+        }
         //인증코드
         .certified-wrap{
             display: block;
@@ -92,6 +105,7 @@
         //비밀번호
         .password-wrap{
             position: relative;
+            margin-bottom: 20px;
             .pw{
                 @extend %input-base;
                 width: 100%;
