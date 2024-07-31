@@ -62,8 +62,8 @@ function ChatList() {
             <Header isVisible={true} link={-1}/>
             <h3>진행중인 상담</h3>
             <ul className='chatlist-card-wrap'>
-                {processedChatList?.map((item)=>(
-                    <Link to={`/chat/${item.opponentUser}`}>
+                {processedChatList?.map((item,index)=>(
+                    <Link key={index} to={`/chat/${item.opponentUser}`}>
                         <ChatListItem item={item} handleOnclick={()=>handleOnclick(item.roomId)}/>
                     </Link> 
                 ))}

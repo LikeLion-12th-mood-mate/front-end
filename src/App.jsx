@@ -20,25 +20,6 @@ const ConsultDetail = lazy(()=>import("./components/chat/detail/ConsultDetail"))
 const ChatList = lazy(()=>import("./components/chatlist/ChatList"));
 const DiaryAnalyst = lazy(()=>import("./components/diary/analyst/Analyst"));
 
-// function ProtectedRoute({ link,children }) {
-//   const isauth = useSelector((state) => state.auth.isAuthenticated);
-//   const dispatch = useDispatch()
-//   if( sessionStorage.getItem('email')){
-//     dispatch(authActions.login());
-//   }
-//   else{
-//     dispatch(authActions.logout());
-//   }
-//   console.log(isauth)
-//   if (!isauth) {
-//     return children
-//   }
-//   else{
-//     return <p>로그인을 먼저 해주세요</p>
-//   }
-// }
-
-
 
 
 function App() {

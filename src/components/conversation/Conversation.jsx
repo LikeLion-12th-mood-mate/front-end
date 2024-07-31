@@ -17,7 +17,7 @@ function Conversation() {
 
   const token = sessionStorage.getItem('token');
   const roomId = sessionStorage.getItem('roomId');
-  
+  const nickname = sessionStorage.getItem('nickname')
 
 
   const client = useRef(null);
@@ -99,11 +99,7 @@ function Conversation() {
     };
     getCounselorData();
   }, []);
-  useEffect(() => {
-    if (scrollRef.current) {
-        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-}, [chatHistory]);
+
   
   useEffect(() => {
     console.log('채팅기록: ', chatHistory);
@@ -119,10 +115,12 @@ function Conversation() {
       </div>
       <Gridwrap>
         <div className='chat-history-wrap'>
-        <ul className='history-wrap'>
-          {chatHistory.map((item)=>
-            (<li className='chat-history'>{item.message}</li>))}
-        </ul>
+          <ul className='history-wrap'>
+            {chatHistory.map((item)=>
+              (<div className={`${item.sender===nickname ? 'history':'history active'}`}>
+                <li className={`${item.sender===nickname ? 'chat-history':'chat-history active'}`}>{item.message}</li>
+              </div>))}
+          </ul>
         </div>
        
       </Gridwrap>
