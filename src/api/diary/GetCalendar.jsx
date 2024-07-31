@@ -3,7 +3,7 @@ import axios from 'axios'
 
 async function GetCalendar({token}) {
     try{
-        const response = await axios.get(`http://116.121.184.161:9001/diary/read`,{
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/diary/read`,{
             headers: {
                 'Authorization': `Bearer ${token}`
             }

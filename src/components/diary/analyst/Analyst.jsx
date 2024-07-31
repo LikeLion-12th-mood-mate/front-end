@@ -35,10 +35,10 @@ function Analyst() {
     const [year,month,day] = date.split('-').map(Number);
     useEffect(()=>{
         const getAnalyst=async()=>{
-            //const response=await GetCalendar({token:token});
-            //setAnalystData(response.data);
-            //console.log(response)
-            setAnalystData(dummydata)
+            const response=await GetCalendar({token:token});
+            setAnalystData(response);
+            console.log(response)
+            //setAnalystData(dummydata)
         }
         getAnalyst();
     },[])
@@ -47,7 +47,7 @@ function Analyst() {
         <div className='header-bg'>
             <Gridwrap>
                 <Header month={month} day={day} link={'diary'} isNext={true}/>
-                <Emotion analystData={analystData}/>
+                <Emotion analystData={analystData} date={date}/>
                 <Advice analystData={analystData}/>
             </Gridwrap>
         </div>

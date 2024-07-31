@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom'
 
 import gotochat from '../../../assets/chat/gotochat.svg'
 import backward from '../../../assets/backward2.svg'
-import forward from '../../../assets/forward.svg'
 
-function Header({isVisible,link,isNext,month,day,disconnect}) {
+function Header({isVisible,link,month,day,disconnect}) {
   return (
     <div className='header-wrap'>
         {<Link to={link===-1 ? -1 :`/${link}`}>
@@ -19,12 +18,7 @@ function Header({isVisible,link,isNext,month,day,disconnect}) {
             </Link>  :
             ''     
         }
-        {isNext ? 
-            <Link to='/chatlist'>
-              <img src={forward} className='backward' alt='gotochat'/>
-            </Link>  :
-            ''     
-        }
+        
         
         
     </div>

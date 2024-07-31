@@ -40,73 +40,74 @@ const DiaryAnalyst = lazy(()=>import("./components/diary/analyst/Analyst"));
 
 
 
-const router =createBrowserRouter([
-  {
-    path:'/',
-    element: <Login/>,
-  },
-  {
-    path:'/signup',
-    element: <Signup/>,
-  },
-  {
-    path:'/complete',
-    element: <Complete/>,
-  },
-  {
-    path:'/home',
-    element: <Mainpage/> ,
-    children:[{path:'/home',element:<Footer footerState='home'/>}]
-  },
-  {
-    path:'/consult',
-    element: <Consult/>,
-    children:
-    [
-      {path:'/consult',element:<Footer footerState='consult'/>},
-    ]
-  },
-  {
-    path:'/consult/:id',
-    element: <ConsultDetail/>,
-    children:
-    [
-      {path:'/consult/:id',element:<Footer footerState='consult'/>},
-    ]
-  },
-  {
-    path:'/chat/:id',
-    element: <Conversation/>,
-  },
-  {
-    path:'/chatlist',
-    element: <ChatList/>,
-  },
-  
-  {
-    path:'/program',
-    element: <Category/>,
-    children:[{path:'/program',element:<Footer footerState='program'/>}]
-  },
-  {
-    path:'/diary',
-    element: <Diary/>,
-    children:[{path:'/diary',element:<Footer footerState='diary'/>}]
-  },
-  {
-    path:'/diary/:date',
-    element: <DiaryWrite/>,
-    children:[{path:'/diary/:date',element:<Footer footerState='diary'/>}]
-  },
-  {
-    path:'/diary/:date/analyst',
-    element: <Analyst/>,
-    children:[{path:'/diary/:date/analyst',element:<Footer footerState='diary'/>}]
-  },
-]);
 
 function App() {
-
+  const isauth = useSelector((state) => state.auth.isAuthenticated);
+  console.log('로그인상태',isauth)
+  const router =createBrowserRouter([
+    {
+      path:'/',
+      element: <Login/>,
+    },
+    {
+      path:'/signup',
+      element: <Signup/>,
+    },
+    {
+      path:'/complete',
+      element: <Complete/>,
+    },
+    {
+      path:'/home',
+      element: <Mainpage/> ,
+      children:[{path:'/home',element:<Footer footerState='home'/>}]
+    },
+    {
+      path:'/consult',
+      element: <Consult/>,
+      children:
+      [
+        {path:'/consult',element:<Footer footerState='consult'/>},
+      ]
+    },
+    {
+      path:'/consult/:id',
+      element: <ConsultDetail/>,
+      children:
+      [
+        {path:'/consult/:id',element:<Footer footerState='consult'/>},
+      ]
+    },
+    {
+      path:'/chat/:id',
+      element: <Conversation/>,
+    },
+    {
+      path:'/chatlist',
+      element: <ChatList/>,
+    },
+    
+    {
+      path:'/program',
+      element: <Category/>,
+      children:[{path:'/program',element:<Footer footerState='program'/>}]
+    },
+    {
+      path:'/diary',
+      element: <Diary/>,
+      children:[{path:'/diary',element:<Footer footerState='diary'/>}]
+    },
+    {
+      path:'/diary/:date',
+      element: <DiaryWrite/>,
+      children:[{path:'/diary/:date',element:<Footer footerState='diary'/>}]
+    },
+    {
+      path:'/diary/:date/analyst',
+      element: <Analyst/>,
+      children:[{path:'/diary/:date/analyst',element:<Footer footerState='diary'/>}]
+    },
+  ]);
 
   return (
     <Suspense fallback="loading...">

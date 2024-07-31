@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 async function PostAnalyst({month,time,content,analyze,emotion,token}) {
     try{
-        const response = await axios.post(`http://116.121.184.161:9001/diary/write`,{
+        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/diary/write`,{
             "month": month,
             "time": time,
             "content": content,

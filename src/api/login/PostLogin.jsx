@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 async function PostLogin({email,password}) {
     try{
-        const response = await axios.post(`http://116.121.184.161:9001/api/v1/member/login`,{
+        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/v1/member/login`,{
             "email": email,
             "password": password
         })

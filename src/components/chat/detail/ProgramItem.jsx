@@ -8,13 +8,13 @@ function ProgramItem({counselor}) {
                 <h3 className='program-title'>{counselor?.name}</h3>
                     <div className='time-place-wrap'>
                         <img src={time} alt='time'/>
-                        <p>매주 (수) {counselor?.programtime}</p>
+                        <p>{counselor?.time}</p>
                         <img src={house} alt='house'/>
-                        <p>{counselor?.programplace}으로 진행</p>
+                        <p>{counselor?.place}</p>
                     </div>
-                    <p className='program-desc'>
-                        {counselor?.programcontent}
-                    </p>
+                    <div className='program-desc'>
+                        {counselor?.keyWords.map((item)=><p className='keyword'>{item.word}</p>)}
+                    </div>
            
     </li>
   )

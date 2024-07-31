@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 async function GetChatInfo(query) {
     try{
-        const response = await axios.get(`http://116.121.184.161:9001/api/counselor/search`,{
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/counselor/search`,{
             params:{
                 query:query
             }
