@@ -1,9 +1,10 @@
 import React from 'react'
 
 function ChatListItem({item,handleOnclick}) {
+  
   return (
     <li key={item?.id} className='chatlist-card' onClick={handleOnclick}>
-        <img src='' alt='progile'/>
+        {/* <img src='' alt='progile'/> */}
         <div className='text-wrap'>
             <div className='text-title-wrap'>
                 <h3 className='name'>{item?.opponentUser}</h3>

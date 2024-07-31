@@ -3,7 +3,7 @@ import axios from 'axios'
 
 async function GetCounselor(id) {
     try{
-        const response = await axios.get(`http://116.121.184.161:9001/api/counselor/${id}`)
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/counselor/${id}`)
         return response.data
     }
     catch(error){

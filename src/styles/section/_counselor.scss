@@ -43,6 +43,7 @@
             .title{
                 @include text-style(16px,700,$black);
                 margin-bottom: 24px;
+                
             }
             .program-card-wrap{
                 @include flexbox(start,center);
@@ -51,6 +52,7 @@
                 overflow-x: auto;
                 -ms-overflow-style: none;
                 scrollbar-width: none; 
+                margin-bottom: 100px;
                 .program-card{
                     padding: 16px;
                     border-radius: 8px;
@@ -59,10 +61,16 @@
                     margin-right: 24px;
                     margin-bottom: 50px;
                     flex-shrink: 0;
+                    
                     cursor: pointer;
                     .program-title{
                         @include text-style(16px,700,$black);
                         margin-bottom: 12px;
+                        overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 1;
+                            -webkit-box-orient: vertical;
                     }
                     .time-place-wrap{
                         @include flexbox(start,center);
@@ -77,12 +85,22 @@
                         }
                     }
                     .program-desc{
-                        @include text-style(14px,400,$black);
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 9;
-                        -webkit-box-orient: vertical;
+                        @include flexbox(start,start);
+
+                        .keyword{
+                            @extend %btn-base;
+                            @include text-style(12px,400,$black);
+                            height: 30px;
+                            padding: 8px 16px;
+                            border:1px solid $grey;
+                            margin-right: 8px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 1;
+                            -webkit-box-orient: vertical;
+                        }
+                        
                     }
                 }
             }

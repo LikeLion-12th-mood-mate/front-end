@@ -42,6 +42,7 @@
                     width: 100%;
                     .content{
                         @include text-style(16px,400,$black);
+                        max-width: 200px;
                         overflow: hidden;
                         text-overflow: ellipsis;
                         display: -webkit-box;

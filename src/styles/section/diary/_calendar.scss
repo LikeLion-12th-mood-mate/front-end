@@ -43,11 +43,10 @@
     color: #126B56 !important; 
   }
   //일 클릭했을때
-  .react-calendar__tile--active {
+  .react-calendar__tile--active.highlighted-date {
     background-color: $deep-green !important; 
     color: $white !important;
-    border-radius: 34px !important;
-  }
+}
   // 방향 없애기
   .react-calendar__navigation__prev,
 .react-calendar__navigation__next {
@@ -71,5 +70,4 @@
 .highlighted-date {
     background-color: #A3F2D8 !important;
     border-radius: 34px !important;
-    
 }

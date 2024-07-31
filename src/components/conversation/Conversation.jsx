@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import SockJS from 'sockjs-client';
-import { Stomp } from '@stomp/stompjs';
+import * as StompJs from '@stomp/stompjs';
 
 import Gridwrap from '../grid/Gridwrap';
 import Header from '../chat/common/Header';
 import getChatFind from '../../api/chat/conversation/getChatFind';
+import { combineSlices } from '@reduxjs/toolkit';
 
 function Conversation() {
   const { id } = useParams();
@@ -17,66 +18,76 @@ function Conversation() {
   const token = sessionStorage.getItem('token');
   const roomId = sessionStorage.getItem('roomId');
   
+
+
   const client = useRef(null);
   const inputRef = useRef();
+  const scrollRef = useRef();
   console.log(id);
 
   // 소켓 연결
-  const connectHandler = () => {
-    const socket = new SockJS(`http://116.121.184.161:9001/stomp`);
-    client.current = Stomp.over(socket);
-    client.current.connect(
-      {
-        Authorization: 'Bearer ' + token,
-        'Content-Type': 'application/json',
-      },
-      () => {
-        console.log('연결성공');
-        client.current.subscribe(
-          `/subscribe/notice/${roomId}`,
-          (message) => {
-            console.log('수신한 메시지:', message);
-            const jsonMessage = JSON.parse(message.body);
-            console.log('메세지확인', jsonMessage);
-            setChatHistory((prevHistory) => {
-              return prevHistory ? [...prevHistory, jsonMessage] : [jsonMessage];
-            });
-          },
-          {
-            Authorization: 'Bearer ' + token,
-            'Content-Type': 'application/json',
-          }
-        );
+
+  useEffect(() => {
+    connect();
+
+    return () => disconnect();
+  }, [roomInfo]);
+
+
+  const connect = () => {
+    client.current = new StompJs.Client({
+      brokerURL: 'ws://3.35.123.191:9001/stomp',
+      onConnect: () => {
+        subscribe();
       }
-    );
-  };
+    });
 
-  const sendHandler = (event) => {
-    if (event.key === 'Enter' && client.current && client.current.connected) {
-      const messageContent = {
-        roomId: roomId,
-        user: roomInfo?.user,
-        content: inputRef.current.value,
-        createAt: null,
-      };
-      console.log('보내는 메시지 내용:', messageContent);
-      client.current.send(
-        '/app/message',
-        {
-          Authorization: 'Bearer ' + token,
-          'Content-Type': 'application/json',
-        },
-        JSON.stringify(messageContent)
-      );
-      inputRef.current.value = '';
+    client.current.webSocketFactory = function () {
+      return new SockJS("http://3.35.123.191:9001/stomp");
+    };
+
+    client.current.activate();
+  };
+  //메세지보내기
+  const publish = async () => {
+    console.log("message content: ", inputRef.current.value)
+    if (!client.current.connected || inputRef.current.value.length === 0) return;
+    console.log('publish on')
+    try {
+      await client.current.publish(
+       {
+        destination: "/app/message",
+        body: JSON.stringify({
+          roomid: roomId,
+          user: roomInfo.user,
+          content: inputRef.current.value,
+          createAt: null,
+        }),
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+      console.log('Message published');
+      inputRef.current.value = "";
+    } catch (error) {
+      console.error('Failed to publish message:', error);
     }
   };
-
+  //구독
+  const subscribe = () => {
+    console.log("subscribe: " + client.current.connected);
+    client.current.subscribe(`/subscribe/notice/${roomId}`, (body) => {
+      console.log('Received message:', body.body);
+      try {
+        const json_body = JSON.parse(body.body);
+        setChatHistory((prevChatHistory) => [...prevChatHistory, json_body]);
+      } catch (error) {
+        console.error('Failed to parse received message:', error);
+      }
+    });
+  };
   const disconnect = () => {
-    if (client.current) {
-      client.current.disconnect();
-      console.log('연결이 해제되었습니다.');
-    }
+    client.current.deactivate();
   };
 
   useEffect(() => {
@@ -88,16 +99,12 @@ function Conversation() {
     };
     getCounselorData();
   }, []);
-
   useEffect(() => {
-    if (roomInfo) {
-      connectHandler();
-      return () => {
-        disconnect();
-      };
+    if (scrollRef.current) {
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [roomInfo]);
-
+}, [chatHistory]);
+  
   useEffect(() => {
     console.log('채팅기록: ', chatHistory);
   }, [chatHistory]);
@@ -110,9 +117,20 @@ function Conversation() {
           <h3 className='name'>{id}</h3>
         </Gridwrap>
       </div>
+      <Gridwrap>
+        <div className='chat-history-wrap'>
+        <ul className='history-wrap'>
+          {chatHistory.map((item)=>
+            (<li className='chat-history'>{item.message}</li>))}
+        </ul>
+        </div>
+       
+      </Gridwrap>
+
 
       <div className='conversation-input-wrap'>
-        <input ref={inputRef} onKeyPress={sendHandler} className='conversation-input' placeholder='내용을 입력하세요' />
+        <input ref={inputRef}  className='conversation-input' placeholder='내용을 입력하세요' />
+        <button type='button' className='conversation-submit' onClick={publish}>전송</button>
       </div>
     </section>
   );
