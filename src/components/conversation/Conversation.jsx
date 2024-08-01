@@ -126,9 +126,9 @@ function Conversation() {
       <Gridwrap>
         <div className='chat-history-wrap'>
           <ul className='history-wrap'>
-            {chatHistory.map((item)=>
+            {chatHistory.map((item,index)=>
               (<div className={`${item.sender===nickname ? 'history':'history active'}`}>
-                <li className={`${item.sender===nickname ? 'chat-history':'chat-history active'}`}>{item.message}</li>
+                <li key={index} className={`${item.sender===nickname ? 'chat-history':'chat-history active'}`}>{item.message}</li>
               </div>))}
               <div ref={scrollRef}/>
           </ul>
