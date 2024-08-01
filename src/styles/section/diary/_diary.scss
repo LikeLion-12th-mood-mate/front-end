@@ -3,7 +3,7 @@
     padding-bottom: 200px;
     .header{
         padding-top: 60px;
-        @include text-style(24px,700,$black);
+        @include text-style(22px,700,$black);
         margin-bottom: 35px
     }
     button{
