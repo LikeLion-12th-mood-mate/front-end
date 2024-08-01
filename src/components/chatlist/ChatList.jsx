@@ -39,7 +39,7 @@ function ChatList() {
              SetChatList(response)
              setIsLoading(false);
              console.log('모든채팅방 조회',response)
-             //SetChatList(dummydata);
+             
         }
         //상대방이 이름 나는 토큰값
         getConsultList();

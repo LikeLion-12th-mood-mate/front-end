@@ -1,0 +1,127 @@
+.category{
+  padding-top: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  
+  .text1{
+    margin-top: 10px;
+    font-size:24px;
+    font-family:Noto Sans KR;
+    font-weight: bolder;
+  }
+  .chat{
+    margin-top: 20px;
+    width:100%;
+    height: 150px;
+   // border:1px solid black; //임시
+    overflow-x: auto;
+    white-space: nowrap;//?
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    .chat-content{
+      display:inline-block;
+      width:80%;
+      height:150px;
+      border: solid 1px #E1E3E0;
+      border-radius: 8px;
+      margin-right:14px;
+      padding:16px;
+      .p{
+        width:100%;height:24px;
+        white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+        text-overflow: ellipsis; /* 잘린 텍스트에 ... 추가 */
+        overflow: hidden;//!
+        margin-bottom:12px;
+      }
+      .div1{
+        margin-bottom:30px;
+        width:100%;height:19px;
+        .alarm{
+          height:19px;
+          width:19px;
+        }
+      }
+      .div2{
+        width:100%;
+        height:33px;
+      }
+    }
+  }
+  .text2{
+    margin-top: 34px;
+    font-size:24px;
+    font-family:Noto Sans KR;
+    font-weight: bolder;
+  }
+  .video{
+
+    margin-top:20px;
+    //border:1px solid black ;//임시
+    height: 227px;
+    width:100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    white-space: nowrap;//?
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    .video-content{
+      margin-right: 16px;
+      width:70%;
+      height:227px;
+      display:inline-block;
+      padding-right: 10px;
+      padding-left: 10px;
+      .url{
+        width:100%;
+        height:136px;
+        border-radius: 12px;
+        white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+        text-overflow: ellipsis; /* 잘린 텍스트에 ... 추가 */
+        overflow: hidden;//!
+        margin-bottom: 5px;
+      }
+      .box{
+        padding:10px;
+        width:100%;
+        height:86px;
+
+        .title{
+          width:100%;height:23px;
+          margin-bottom: 8px;
+          white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+          text-overflow: ellipsis; /* 잘린 텍스트에 ... 추가 */
+          overflow: hidden;//!
+
+        }
+        .name{
+          width:100%;height:17px;
+          font-size:12px;
+          color:#8E918F;
+          white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+          text-overflow: ellipsis; /* 잘린 텍스트에 ... 추가 */
+          overflow: hidden;//!
+        }
+      }
+    }
+  }
+ .search-container{
+  .search-logo{
+    width:24px;
+    height:24px;
+    position:relative;
+    left:90%;
+    bottom: 35px;
+   }
+   .input{
+    width:100%;
+    border-radius: 4px;
+    border:#8E918F solid 1px;
+    padding:14px 20px;
+    
+  }
+ }
+ 
+  
+}

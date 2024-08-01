@@ -20,7 +20,7 @@ const DiaryWrite = lazy(()=>import("./components/diary/diarywrite/DiaryWrite"));
 const Signup = lazy(()=>import("./components/signup/Signup"));
 const ConsultDetail = lazy(()=>import("./components/chat/detail/ConsultDetail"));
 const ChatList = lazy(()=>import("./components/chatlist/ChatList"));
-
+const CategoryVideo=lazy(()=>import("./components/category/CategoryVideo"))
 
 const ProtectedRoute = ({ isAuth, children }) => {
   if (!isAuth) {
@@ -49,9 +49,7 @@ function App() {
     {
       path: '/home',
       element: (
-        <ProtectedRoute isAuth={isauth}>
-          <Mainpage />
-        </ProtectedRoute>
+        <Mainpage/>
       ),
       children: [
         { path: '/home', element: <Footer footerState='home' /> }
@@ -100,13 +98,23 @@ function App() {
     {
       path: '/program',
       element: (
-        <ProtectedRoute isAuth={isauth}>
+     
           <Category />
          
-        </ProtectedRoute>
+   
       ),
       children: [
         { path: '/program', element: <Footer footerState='program' /> }
+      ]
+    },
+    {
+      path:'/program/:id',
+      element: (
+        <CategoryVideo/>
+      ),
+      children:
+      [
+        {path:'/program/:id',element:<Footer footerState='program'/>},
       ]
     },
     {
@@ -146,71 +154,6 @@ function App() {
       ]
     },
   ]);
-  /*
-  const router =createBrowserRouter([
-    {
-      path:'/',
-      element: <Login/>,
-    },
-    {
-      path:'/signup',
-      element: <Signup/>,
-    },
-    {
-      path:'/complete',
-      element: <Complete/>,
-    },
-    {
-      path:'/home',
-      element: <Mainpage/> ,
-      children:[{path:'/home',element:<Footer footerState='home'/>}]
-    },
-    {
-      path:'/consult',
-      element: <Consult/>,
-      children:
-      [
-        {path:'/consult',element:<Footer footerState='consult'/>},
-      ]
-    },
-    {
-      path:'/consult/:id',
-      element: <ConsultDetail/>,
-      children:
-      [
-        {path:'/consult/:id',element:<Footer footerState='consult'/>},
-      ]
-    },
-    {
-      path:'/chat/:id',
-      element: <Conversation/>,
-    },
-    {
-      path:'/chatlist',
-      element: <ChatList/>,
-    },
-    
-    {
-      path:'/program',
-      element: <Category/>,
-      children:[{path:'/program',element:<Footer footerState='program'/>}]
-    },
-    {
-      path:'/diary',
-      element: <Diary/>,
-      children:[{path:'/diary',element:<Footer footerState='diary'/>}]
-    },
-    {
-      path:'/diary/:date',
-      element: <DiaryWrite/>,
-      children:[{path:'/diary/:date',element:<Footer footerState='diary'/>}]
-    },
-    {
-      path:'/diary/:date/analyst',
-      element: <Analyst/>,
-      children:[{path:'/diary/:date/analyst',element:<Footer footerState='diary'/>}]
-    },
-  ]);*/
 
   return (
     <Suspense fallback={<Loading/>}>
