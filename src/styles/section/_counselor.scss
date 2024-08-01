@@ -52,7 +52,7 @@
                 overflow-x: auto;
                 -ms-overflow-style: none;
                 scrollbar-width: none; 
-                margin-bottom: 100px;
+                margin-bottom: 150px;
                 .program-card{
                     padding: 16px;
                     border-radius: 8px;
@@ -90,8 +90,9 @@
                         .keyword{
                             @extend %btn-base;
                             @include text-style(12px,400,$black);
-                            height: 30px;
-                            padding: 8px 16px;
+                            display: block;
+                            //height: 30px;
+                            padding: 4px 8px;
                             border:1px solid $grey;
                             margin-right: 8px;
                             overflow: hidden;

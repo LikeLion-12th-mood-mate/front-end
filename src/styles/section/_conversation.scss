@@ -1,6 +1,11 @@
 .conversation{
     background-color: #DBE5DF;
     position: relative;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+            scrollbar-width: none; 
     .header-bg{
         position: fixed;
         width: 100%;

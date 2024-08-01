@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { authActions } from './store/auth';
 
+import Loading from './components/loading/loading';
+
 const Login = lazy(() => import('./components/Login/Login'));
 const Mainpage = lazy(() => import('./components/main/MainPage'));
 const Consult = lazy(()=>import('./components/chat/Chat'));
@@ -18,9 +20,6 @@ const DiaryWrite = lazy(()=>import("./components/diary/diarywrite/DiaryWrite"));
 const Signup = lazy(()=>import("./components/signup/Signup"));
 const ConsultDetail = lazy(()=>import("./components/chat/detail/ConsultDetail"));
 const ChatList = lazy(()=>import("./components/chatlist/ChatList"));
-const DiaryAnalyst = lazy(()=>import("./components/diary/analyst/Analyst"));
-
-
 
 function App() {
   const isauth = useSelector((state) => state.auth.isAuthenticated);
@@ -91,7 +90,7 @@ function App() {
   ]);
 
   return (
-    <Suspense fallback="loading...">
+    <Suspense fallback={<Loading/>}>
       <RouterProvider router={router}/>
     </Suspense>
   )

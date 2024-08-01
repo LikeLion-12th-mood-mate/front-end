@@ -9,13 +9,20 @@ import GetAnalystData from '../../api/diary/GetAnalystData';
 import Analyst from './Analyst';
 import getNickName from '../../api/getNickName';
 import getCalendar from '../../api/diary/GetCalendar';
+import Loading from '../loading/loading';
+
 function Diary() {
   const [calendarData,setCalendarData] = useState();
   const [selectDate,setSelectDate] = useState('');
   const [nickname,setNickname] = useState('');
+  const [isLoading,setIsLoading] = useState(true);
+
   const token = sessionStorage.getItem('token')
+
   const navigate = useNavigate();
   const formatDay = (locale, date) => date.getDate();
+
+
   const formatShortWeekday = (locale, date) => {
     const weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
     return weekdays[date.getDay()];
@@ -58,33 +65,37 @@ function Diary() {
       console.log(response)
        setCalendarData(response);
       setNickname(response2.nickname)
+      setIsLoading(false);
     }
     getCalendarData()
   },[])
   return (
-    <section className='diary'>
-      <Gridwrap>
-        <h3 className='header'>{nickname}님의 하루는 어땠나요? <br/> 오늘의 심리상태를 기록해보세요</h3>
-      </Gridwrap>
-      <div className='calendar-container'>
-        <Calendar
-          formatDay={formatDay}
-          formatShortWeekday={formatShortWeekday}
-          formatMonthYear={(locale, date) => moment(date).format('MMMM')}
-          calendarType="gregory" // 일요일 부터 시작
-          next2Label={null} // +1년 & +10년 이동 버튼 숨기기
-          prev2Label={null} // -1년 & -10년 이동 버튼 숨기기
-          tileClassName={tileClassName}
-          onClickDay={handleDateClick}
-        />
-      </div>
-      <Gridwrap>
-      {selectDate ? <Analyst analystData={calendarData} selectDate={selectDate}/> : ''}
-        
-      </Gridwrap>
+   <section className='diary'>
+   <Gridwrap>
+     <h3 className='header'>{nickname}님의 하루는 어땠나요? <br/> 오늘의 심리상태를 기록해보세요</h3>
+   </Gridwrap>
+   {isLoading ? <Loading/> :
+    <div className='calendar-container'>
+    <Calendar
+      formatDay={formatDay}
+      formatShortWeekday={formatShortWeekday}
+      formatMonthYear={(locale, date) => moment(date).format('MMMM')}
+      calendarType="gregory" // 일요일 부터 시작
+      next2Label={null} // +1년 & +10년 이동 버튼 숨기기
+      prev2Label={null} // -1년 & -10년 이동 버튼 숨기기
+      tileClassName={tileClassName}
+      onClickDay={handleDateClick}
+    />
+  </div>
+  }
+   
+   <Gridwrap>
+   {selectDate ? <Analyst analystData={calendarData} selectDate={selectDate}/> : ''}
      
-      <Outlet />
-    </section>
+   </Gridwrap>
+  
+   <Outlet />
+ </section>
   )
 }
 
