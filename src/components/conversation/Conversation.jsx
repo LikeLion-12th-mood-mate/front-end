@@ -8,16 +8,18 @@ import Gridwrap from '../grid/Gridwrap';
 import Header from '../chat/common/Header';
 import getChatFind from '../../api/chat/conversation/getChatFind';
 import { combineSlices } from '@reduxjs/toolkit';
+import Loading from '../loading/loading';
 
 function Conversation() {
   const { id } = useParams();
   
   const [chatHistory, setChatHistory] = useState([]);
   const [roomInfo, setRoomInfo] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   const token = sessionStorage.getItem('token');
   const roomId = sessionStorage.getItem('roomId');
-  
+  const nickname = sessionStorage.getItem('nickname')
 
 
   const client = useRef(null);
@@ -96,33 +98,40 @@ function Conversation() {
       console.log('채팅방확인', response2.data);
       setChatHistory(response2.data.histories);
       setRoomInfo(response2.data);
+      setIsLoading(false);
     };
     getCounselorData();
   }, []);
-  useEffect(() => {
-    if (scrollRef.current) {
-        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-}, [chatHistory]);
+
   
   useEffect(() => {
     console.log('채팅기록: ', chatHistory);
   }, [chatHistory]);
 
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [chatHistory]);
   return (
-    <section className='conversation'>
+    <>{isLoading ? <Loading/>:
+      <section className='conversation'>
       <div className='header-bg'>
         <Gridwrap>
           <Header link={-1} disconnect={disconnect} />
           <h3 className='name'>{id}</h3>
         </Gridwrap>
       </div>
+      
       <Gridwrap>
         <div className='chat-history-wrap'>
-        <ul className='history-wrap'>
-          {chatHistory.map((item)=>
-            (<li className='chat-history'>{item.message}</li>))}
-        </ul>
+          <ul className='history-wrap'>
+            {chatHistory.map((item)=>
+              (<div className={`${item.sender===nickname ? 'history':'history active'}`}>
+                <li className={`${item.sender===nickname ? 'chat-history':'chat-history active'}`}>{item.message}</li>
+              </div>))}
+              <div ref={scrollRef}/>
+          </ul>
         </div>
        
       </Gridwrap>
@@ -133,6 +142,9 @@ function Conversation() {
         <button type='button' className='conversation-submit' onClick={publish}>전송</button>
       </div>
     </section>
+    }
+    </>
+   
   );
 }
 

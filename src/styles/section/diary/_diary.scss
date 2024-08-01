@@ -1,5 +1,6 @@
 .diary{
     background-color: $white;
+    padding-bottom: 200px;
     .header{
         padding-top: 60px;
         @include text-style(24px,700,$black);
