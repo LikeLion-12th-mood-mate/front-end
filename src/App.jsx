@@ -20,7 +20,8 @@ const DiaryWrite = lazy(()=>import("./components/diary/diarywrite/DiaryWrite"));
 const Signup = lazy(()=>import("./components/signup/Signup"));
 const ConsultDetail = lazy(()=>import("./components/chat/detail/ConsultDetail"));
 const ChatList = lazy(()=>import("./components/chatlist/ChatList"));
-const CategoryVideo=lazy(()=>import("./components/category/CategoryVideo"))
+const CategoryVideo=lazy(()=>import("./components/category/CategoryVideo"));
+const ProgramDetail=lazy(()=>import("./components/category/ProgramDetail"));
 
 const ProtectedRoute = ({ isAuth, children }) => {
   if (!isAuth) {
@@ -108,13 +109,18 @@ function App() {
       ]
     },
     {
-      path:'/program/:id',
+      path:'/video/:id',
       element: (
         <CategoryVideo/>
       ),
-      children:
-      [
-        {path:'/program/:id',element:<Footer footerState='program'/>},
+    },
+    {
+      path:'/program/:id',
+      element: (
+        <ProgramDetail/>
+      ),
+      children: [
+        { path: '/program/:id', element: <Footer footerState='program' /> }
       ]
     },
     {
