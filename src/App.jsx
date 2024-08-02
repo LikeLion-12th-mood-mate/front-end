@@ -59,10 +59,7 @@ function App() {
     {
       path: '/consult',
       element: (
-        <ProtectedRoute isAuth={isauth}>
-          <Consult />
-         
-        </ProtectedRoute>
+        <Consult/>
       ),
       children: [
         { path: '/consult', element: <Footer footerState='consult' /> }
@@ -71,10 +68,10 @@ function App() {
     {
       path: '/consult/:id',
       element: (
-        <ProtectedRoute isAuth={isauth}>
+     
           <ConsultDetail />
           
-        </ProtectedRoute>
+      
       ),
       children: [
         { path: '/consult/:id', element: <Footer footerState='consult' /> }
@@ -83,17 +80,17 @@ function App() {
     {
       path: '/chat/:id',
       element: (
-        <ProtectedRoute isAuth={isauth}>
+       
           <Conversation />
-        </ProtectedRoute>
+       
       ),
     },
     {
       path: '/chatlist',
       element: (
-        <ProtectedRoute isAuth={isauth}>
+
           <ChatList />
-        </ProtectedRoute>
+       
       ),
     },
     {
@@ -126,10 +123,10 @@ function App() {
     {
       path: '/diary',
       element: (
-        <ProtectedRoute isAuth={isauth}>
+  
           <Diary />
         
-        </ProtectedRoute>
+     
       ),
       children: [
         { path: '/diary', element: <Footer footerState='diary' /> }
@@ -138,10 +135,9 @@ function App() {
     {
       path: '/diary/:date',
       element: (
-        <ProtectedRoute isAuth={isauth}>
+       
           <DiaryWrite />
-         
-        </ProtectedRoute>
+      
       ),
       children: [
         { path: '/diary/:date', element: <Footer footerState='diary' /> }
