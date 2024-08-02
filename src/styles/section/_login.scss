@@ -33,20 +33,19 @@
         }
         
         .goto-signup{
-            font-size: 14px;
-            color: $grey;
-            font-weight: 400;
+            @include text-style(14px,400,$grey);
         }
         
         .login-button{
             @extend %btn-base;
+            @include text-style(14px,400,#002018);
             position: absolute;
             left: 0;
             bottom: 37px;
             width: 100%;
             height: 60px;
             background-color: $light-green;
-            font-size: 14px;
+            
         }
         
     }
