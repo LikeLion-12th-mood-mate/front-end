@@ -79,10 +79,11 @@ function ProgramDetail() {
                     <p className='name'>익명의 고라니</p>
                   </div>
                   <div className='star-wrap'>
-                    <img src='' className='star'/>
+                    <img src={star} className='star'/>
                     <p className='rating'>{item.rating}</p>
                   </div>
                 </div>
+                <p className='review-desc'>{item.reviewText}</p>
               </li>
           ))} 
               

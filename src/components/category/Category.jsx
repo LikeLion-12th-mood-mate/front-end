@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect,useRef,useState } from 'react'
 import { Outlet,Link,useNavigate } from 'react-router-dom'
 
 import time from '../../assets/chat/time.svg'
@@ -6,77 +6,33 @@ import house from '../../assets/chat/house.svg'
 import star from '../../assets/program/star.svg'
 import GetVideo from '../../api/category/GetVideo';
 import GetProgram from '../../api/category/GetProgram';
-const dummyConsult= [
-  {
-    "id": 7,
-    "name": "편안한 관계 형성을 위한 대인관계 의사소통 훈련",
-    "time": "매주 (목) 19:00-21:00",
-    "place": "강남역 인근",
-    "rating": 3.8,
-    "keyWords": [
-      {
-        "word": "대인관계"
-      },
-      {
-        "word": "의사소통"
-      },
-      {
-        "word": "관계 형성"
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "name": "대인관계 신뢰 회복을 목표로 하는 대인관계 기술 향상 워크숍",
-    "time": "매주 (목) 19:00-21:00",
-    "place": "선릉역 근처",
-    "rating": 3.9,
-    "keyWords": [
-      {
-        "word": "관계 형성"
-      },
-      {
-        "word": "신뢰 회복"
-      },
-      {
-        "word": "대인관계 기술"
-      }
-    ]
-  },
-  {
-    "id": 9,
-    "name": "천천히 같이 해보는 대인관계 의사소통 훈련",
-    "time": "매주 (목) 18:00-20:00",
-    "place": "강남역 근처",
-    "rating": 3.9,
-    "keyWords": [
-      {
-        "word": "의사소통"
-      },
-      {
-        "word": "훈련"
-      },
-      {
-        "word": "대인관계"
-      }
-    ]
-  }
-]
-
-
+import { programdata } from './program'
+import Search from '../chat/Search'
+import ProgramkeyWords from './programKeywords'
 function Category() {
   const [video,setVideo]=useState();
   const [program,setProgram]= useState([]);
+  const [isSearchModal,setIsSearchModal] = useState(false)
+  const [searchTerm,setSearchTerm] = useState();
+
+  const searchRef = useRef();
+
   const nickname = sessionStorage.getItem('nickname')
+  
+  
+  const navigate = useNavigate();
+  
+
+  
   useEffect(()=>{
     const fetchData = async() => {
       try {
         const data = await GetVideo(); 
-        const response = await GetProgram();
-        console.log('프로그램 api',response)
-        setProgram(dummyConsult);
+        //const response = await GetProgram(' ');
+        console.log('프로그램 api',programdata.data)
+        setProgram(getRandomItems(programdata.data,5));
         setVideo(data.data);
-        //console.log(video)
+       
       } catch (error) {
         return new Error(error)
       }
@@ -84,11 +40,24 @@ function Category() {
 
     fetchData(); // 
   },[])
-  //console.log(video)
-  const navigate = useNavigate();
 
-   
   console.log(video)
+  function getRandomItems(array, numberOfItems) {
+
+    const shuffled = [...array].sort(() => 0.5 - Math.random());
+    
+    return shuffled.slice(0, numberOfItems);
+  }
+
+  const handleEnter=async()=>{
+    console.log("handleEnter 호출됨");
+    setSearchTerm(searchRef?.current?.value);
+    const response = await GetChatInfo(searchRef?.current?.value)
+    console.log('검색결과',response.data)
+    setResults(response.data)
+    setIsSearchModal(false)
+  }
+  
    const handleClick = (identifier,id) => {
     if(identifier==='video'){
       navigate(`/video/${id}`);
@@ -99,9 +68,14 @@ function Category() {
    };
    
   return (
-    <div className='category'>
-      <div className='search-container'>
-        <input className='input'type='text' placeholder="요즘 뜨는 프로그램의 키워드는 '대인관계'"></input>
+    <>
+      {isSearchModal?
+      <Search dummydata={ProgramkeyWords} inputRef={searchRef} handleEnter={handleEnter} searchModal={isSearchModal} setSearchModal={setIsSearchModal}/>
+      :  <div className='category'>
+      
+      <>
+       <div className='search-container'>
+        <input onClick={()=>setIsSearchModal(true)} className='input'type='text' placeholder="요즘 뜨는 프로그램의 키워드는 '대인관계'"></input>
         <img className='search-logo'src='/src/assets/chat/search.svg' alt='logo'></img>
       </div>
 
@@ -140,9 +114,6 @@ function Category() {
       </div>
       <p className='text2'>{nickname}님에게 추천드리는 <br></br>영상 프로그램을 확인해보세요!</p>
       <div className='video'>
-        
-
-      
         {video?.map((data)=>{
            const videoUrl = data.url; // 예: "https://www.youtube.com/watch?v=fXnYSSzlwKc"
            const videoId = videoUrl.split('v=')[1]?.split('&')[0];
@@ -150,14 +121,14 @@ function Category() {
           return(
           <div key={data.id}className='video-content' onClick={()=>handleClick('video',data.id)}>
             <iframe
-  width="228"
-  height="136"
-  src={url}
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-></iframe>
+              width="228"
+              height="136"
+              src={url}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
 
             {/* <ifram src='url' width="100"height="100"></ifram> */}
             {/* <p className='url'>{data.url}</p> */}
@@ -170,8 +141,14 @@ function Category() {
         )})} 
         
       </div>
+      </>
+      
+     
       <Outlet/>
-    </div>
+    </div>}
+    </>
+  
+   
   )
 }
 
