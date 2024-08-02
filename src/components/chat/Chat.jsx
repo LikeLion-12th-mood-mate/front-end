@@ -8,7 +8,7 @@ import GetChatInfo from '../../api/chat/GetChatInfo';
 import { Outlet } from 'react-router-dom';
 import Gridwrap from '../grid/Gridwrap';
 import Loading from '../loading/loading';
-
+import keyword from './keyword';
 function Chat() {
   const [searchTerm,setSearchTerm] = useState();
   const [consultData,setConsultData] = useState([]);
@@ -42,6 +42,7 @@ function Chat() {
       const response = await GetChatInfo();
       setConsultData(response.data)
       setIsLoading(false)
+      
     }
     getConsultData();
   },[])
@@ -50,7 +51,7 @@ function Chat() {
   return (
     <div className='chat'>
       {searchModal?
-      <Search inputRef={inputRef} handleEnter={handleEnter} searchModal={searchModal} setSearchModal={setSearchModal}/>
+      <Search dummydata={keyword} inputRef={inputRef} handleEnter={handleEnter} searchModal={searchModal} setSearchModal={setSearchModal}/>
       : <ChatHeader inputRef={inputRef} searchModal={searchModal} setSearchModal={setSearchModal} handleEnter={handleEnter} search={searchTerm} setSearch={setSearchTerm}/>}
       
         <Gridwrap>

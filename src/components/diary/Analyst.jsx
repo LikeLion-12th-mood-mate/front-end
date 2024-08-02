@@ -32,7 +32,13 @@ function Analyst(props) {
         </ul>
         <div className='advice-wrap'>
             <h4>오늘의 조언 총평!</h4>
-            <p>{props.analystData?.content?.content}</p>
+            {data?.map((item)=>(
+              <>
+                <p>{item.analysisMessage}</p>
+                <p>{item.encouragementMessage}</p>
+              </>
+              
+            )) }
         
         </div>
     </div>

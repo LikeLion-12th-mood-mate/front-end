@@ -150,10 +150,7 @@ function App() {
     {
       path: '/diary/:date/analyst',
       element: (
-        <ProtectedRoute isAuth={isauth}>
-          <Analyst />
-        
-        </ProtectedRoute>
+        <Analyst/>
       ),
       children: [
         { path: '/diary/:date/analyst', element: <Footer footerState='diary' /> }

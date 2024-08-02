@@ -75,7 +75,7 @@
                     flex-shrink: 0;
                 }
                 .desc-wrap{
-                    @include column-flexbox(start,end);
+                    @include column-flexbox(start,start);
                     h4{
                         @include text-style(16px,700,$black);
                         margin-bottom: 8px;
@@ -87,54 +87,65 @@
                 }
             }
         }
-        //review
-        .review{
-            padding-left: 20px;
-            .title{
-                @include text-style(24px,700,$black); 
-                margin-bottom: 28px;  
-            }
-            .card-wrap{
-                width: 100%;
-                @include flexbox(start,center);
-                overflow: hidden;
-                overflow-x: auto;
-                -ms-overflow-style: none;
-                scrollbar-width: none; 
-                .card{
-                    width: 281px;
-                    height: 228px;
-                    padding: 16px;
-                    background-color: $white;
-                    .header-wrap{
-                        @include flexbox(between,center);
-                        .review-profile-wrap{
-                            @include flexbox(start,center);
-                            .review-profile{
-                                @include imgsize(24px,24px);
-                                background-color: $grey;
-                                margin-right: 8px;
-                            }
-                            .name{
-                                @include text-style(12px,400,$black);
-                            }
+        
+    }
+
+    //review
+    .review{
+        padding-left: 20px;
+        .title{
+            @include text-style(24px,700,$black); 
+            margin-bottom: 28px;  
+        }
+        .card-wrap{
+            width: 100%;
+            @include flexbox(start,center);
+            overflow: hidden;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none; 
+            margin-bottom: 150px;
+            .card{
+                width: 281px;
+                height: 178px;
+                padding: 16px;
+                background-color: $white;
+                flex-shrink: 0;
+                border: 1px solid #E1E3E0;
+                border-radius: 8px;
+                margin-right: 8px;
+                .header-wrap{
+                    @include flexbox(between,center);
+                    width: 100%;
+                    margin-bottom: 12px;
+                    .review-profile-wrap{
+                        @include flexbox(start,center);
+                        
+                        .review-profile{
+                            @include imgsize(24px,24px);
+                            background-color: $grey;
+                            margin-right: 8px;  
                         }
-                        .star-wrap{
-                            @include flexbox(start,center);
-                            .star{
-                                @include imgsize(16px,16px);
-                                margin-right: 1px
-                            }
-                            .rating{
-                                @include text-style(12px,400,$black);
-                            }
+                        .name{
+                            @include text-style(12px,400,$black);
                         }
                     }
-                   
-                    
+                    .star-wrap{
+                        @include flexbox(start,center); 
+                        .star{
+                            @include imgsize(16px,16px);
+                            margin-right: 1px
+                        }
+                        .rating{
+                            @include text-style(12px,400,$black);
+                        }
+                    }
                 }
+                .review-desc{
+                    @include text-style(12px,400,$black);
+                }
+                
             }
         }
     }
-    
 }
