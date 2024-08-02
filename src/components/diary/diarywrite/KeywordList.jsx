@@ -16,7 +16,7 @@ function KeywordList({keywords,setSelectKeywords,selectKeywords}) {
     <div className='keyword-wrap'>
         {keywords.map((item)=>(
           <>
-            <button onClick={() => handleButtonClick(item.keyword)} className={`keyword ${selectKeywords.includes(item.keyword) ? 'selected' : ''}`}>{item.keyword}</button>
+            <button onClick={() => handleButtonClick(item.keyword)} className={`keyword ${selectKeywords.includes(item.keyword) ? 'selected' : ''}`}>{item.emogy}{item.keyword}</button>
           </>
         ))}
     </div>
