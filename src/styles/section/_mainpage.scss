@@ -1,0 +1,179 @@
+.mainpage{
+    background-color: $white;
+    padding-top:74px;
+    .header-wrap{
+
+        margin-bottom: 28px;
+
+        .header{
+            @include text-style(22px,700,$black);
+            line-height: 34.75px;
+        }
+    }
+
+    .card-wrap{
+        @include flexbox(start,center);
+        flex-wrap: nowrap;
+        overflow: hidden;
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none; 
+        width: 100%;
+        margin-bottom: 64px;
+        padding-left: 30px;
+        .card{
+            display: block;
+            width: 340px;
+            height: 157px;
+            background-color: $card;
+            flex-shrink: 0;
+            margin-right: 20px;
+            padding: 0 20px;
+            cursor: pointer;
+            .title{
+                font-size: 14px;
+                font-weight: 700;
+                color: #005140;
+                border-bottom: 1px solid $green;
+                padding: 8px 0;
+                margin-bottom: 20px;
+            }
+            .content-wrap{
+                @include flexbox(start,center);
+                .profile{
+                    display: block;
+                    width: 70px;
+                    height: 70px;
+                    background-color: $black;
+                    border-radius: 50%;
+                    flex-shrink: 0;
+                    margin-right: 20px;
+                    background-size: 70px 70px;
+                }
+                .info{
+                    width: 100%;
+                    .rating-wrap{
+                        @include flexbox(start,center);
+                        margin-bottom: 8px;
+                        .rating-img{
+                            display: block;
+                            width: 13px;
+                            height: 13px;
+                            margin-right: 4px;
+                        }
+                        .rating{
+                            color: $black;
+                            font-size: 12px;
+                            font-weight: 400;
+                        }
+                    }
+                    .name-wrap{
+                        @include flexbox(between,center);
+                        width: 100%;
+                        margin-bottom: 11px;
+                        .name{
+                            font-size: 16px;
+                            font-weight: 700;
+                            color: $black;
+                        }
+                        .time{
+                            font-size: 12px;
+                            font-family: 400;
+                            color: $grey;
+                        }
+                    }
+                    .content{
+                        max-height: 20px;
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: $black;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 1;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+            }   
+        }
+    }
+
+  .asmr{
+    width:100%;
+    height:227px;
+    overflow-x: auto;
+    margin-bottom: 100px;
+    white-space: nowrap;//?
+   
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    .asmr-content{
+      display:inline-block;
+      width:248px;
+      height:227px;
+      margin-right:16px;
+      padding-right:10px;padding-left:10px;
+      //background-color: blue;
+    }
+    .box{
+     height:86px;
+     width:100%;
+      margin-top:5px;
+      padding:10px;
+      .title{
+        width:100%;height:41px;
+        margin-bottom:8px;
+        white-space: nowrap;
+        overflow: hidden;
+        color: #000;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        /* Subtitle 2 */
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 0.014px;
+
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp:1 ;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        
+      }
+      .name{
+        height:17px;width:100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--material-theme-ref-neutral-neutral60, #8E918F);
+
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 0.048px;
+      }
+    }
+  }
+
+
+
+    }
+
+
+   
+
+
+
+
+
+
+
+//글자 불러오기 성공 but 영상 밑으로 글씨가 떠야하는데 옆으로 뜬다.. 일단 패딩값 조절중인데 마진도 건들어봐야할듯 
+//영상 밑으로 글자 띄우는 법 찾아보기       
+
+
+ 

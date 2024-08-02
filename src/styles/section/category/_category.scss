@@ -1,0 +1,182 @@
+.category{
+  padding-top: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  &.active{
+    padding-top: 34px;
+  }
+  .backward{
+    @include imgsize(50px,50px);
+    margin-bottom: 11px;
+  }
+  .category-search-title{
+    @include text-style(24px,700,$black);
+    margin-bottom: 12px;
+  }
+  .text1{
+    margin-top: 10px;
+    font-size:24px;
+    font-family:Noto Sans KR;
+    font-weight: bolder;
+  }
+  .chat{
+    margin-top: 20px;
+    width:100%;
+    height: 190px;
+   // border:1px solid black; //임시
+    overflow-x: auto;
+    white-space: nowrap;//?
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+  }
+  .chat-search-result{
+    width: 100%;
+    @include column-flexbox(start,start);
+  }
+  .chat-content{
+    display:inline-block;
+    width:80%;
+    height:190px;
+    border: solid 1px #E1E3E0;
+    border-radius: 8px;
+    margin-right:14px;
+    padding:16px;
+    cursor: pointer;
+    &.active{
+      width: 100%;
+      margin-bottom: 17px
+    }
+    .name{
+      @include text-style(16px,700,$black);
+      width:100%;
+      height:24px;
+      white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+      text-overflow: ellipsis; /* 잘린 텍스트에 ... 추가 */
+      overflow: hidden;//!
+      margin-bottom:12px;
+    }
+    .time-place-wrap{
+      @include column-flexbox(start,start);
+
+      .time-wrap{
+        @include flexbox(start,center);
+        margin-bottom:10px;
+        margin-right: 10px;
+        width:100%;
+        height:19px;
+        .alarm{
+          height:19px;
+          width:19px;
+          margin-right: 4px
+        }
+        .time{
+          @include text-style(12px,400,$black);
+        }
+      }
+    }
+    
+    .keyword-wrap{
+      @include flexbox(start, center);
+      width:100%;
+      height:33px;
+      overflow: hidden;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none; 
+      .keyword{
+        @extend %btn-base;
+        @include text-style(12px,400,$black);
+        display: block;
+        //height: 30px;
+        padding: 4px 8px;
+        border:1px solid #6F7975;
+        margin-right: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    }
+  }
+  .text2{
+    margin-top: 34px;
+    font-size:24px;
+    font-family:Noto Sans KR;
+    font-weight: bolder;
+  }
+  .video{
+
+    margin-top:20px;
+    //border:1px solid black ;//임시
+    height: 227px;
+    width:100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    white-space: nowrap;//?
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin-bottom: 100px;
+    .video-content{
+      margin-right: 16px;
+      width:70%;
+      height:227px;
+      display:inline-block;
+      padding-right: 10px;
+      padding-left: 10px;
+
+      .url{
+        width:100%;
+        height:136px;
+        border-radius: 12px;
+        white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+        text-overflow: ellipsis; /* 잘린 텍스트에 ... 추가 */
+        overflow: hidden;//!
+        margin-bottom: 5px;
+      }
+      .box{
+        padding:10px;
+        width:100%;
+        height:86px;
+        cursor: pointer;
+        .title{
+          width:100%;height:23px;
+          margin-bottom: 8px;
+          white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+          text-overflow: ellipsis; /* 잘린 텍스트에 ... 추가 */
+          overflow: hidden;//!
+
+        }
+        .name{
+          width:100%;height:17px;
+          font-size:12px;
+          color:#8E918F;
+          white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+          text-overflow: ellipsis; /* 잘린 텍스트에 ... 추가 */
+          overflow: hidden;//!
+        }
+      }
+    }
+  }
+ .search-container{
+  .search-logo{
+    width:24px;
+    height:24px;
+    position:relative;
+    left:90%;
+    bottom: 35px;
+   }
+   .input{
+    width:100%;
+    border-radius: 4px;
+    border:#8E918F solid 1px;
+    padding:14px 20px;
+    &::placeholder{
+      @include text-style(14px,400,$grey);
+    }
+  }
+ }
+ 
+  
+}

@@ -1,0 +1,16 @@
+.header-wrap{
+    @include flexbox(between,center);
+    position: relative;
+    .backward{
+        @include imgsize(50px,50px);
+    }
+    .gotochat{
+        @include imgsize(28px,28px)
+    }
+    .date{
+        @include text-style(16px,400,$black);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

@@ -1,0 +1,30 @@
+.footer-wrap{
+    @include flexbox(between,center);
+    padding: 28px 40px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: $white;
+    width: 100%;
+    border-top: 1px solid $grey;
+    .badge-wrap{
+        @include column-flexbox(center,center);
+        .badge{
+            display: block;
+            width: 40px;
+            height: 40px;
+            margin-bottom: 8px;
+        }
+        p{
+            color: $black;
+            font-size: 14px;
+            font-weight: 400;
+
+        }
+    }
+    @media (min-width:768px){
+        width: 430px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

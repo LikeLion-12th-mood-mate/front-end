@@ -9,6 +9,8 @@
 
 @import "./mixins/flexbox";
 @import "./mixins/position";
+@import "./mixins/imgsize";
+@import "./mixins/textstyle";
 
 @import "./modules/buttons";
 @import "./modules/inputs";
@@ -18,3 +20,20 @@
 @import "./section/login";
 @import "./section/signup";
 @import "./section/sgcomplete";
+@import "./section/chat";
+@import "./section/footer";
+@import "./section/counselor";
+@import "./section/common/header";
+@import "./section/gotochat-modal";
+@import "./section/chatlist";
+@import "./section/conversation";
+@import "./section/diary/diary";
+@import "./section/diary/diarywrite";
+@import "./section/diary/analyst";
+@import "./section//diary//calendar";
+@import "./section//search";
+@import "./section/loading";
+@import "./section/category/category";
+@import "./section/category/categoryvideo";
+@import "./section/mainpage";
+@import "./section/category/programdetail";

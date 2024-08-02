@@ -1,0 +1,9 @@
+  @mixin text-style($size, $weight ,$color: false) {
+    font-size: $size;
+    font-weight: $weight;
+    @if (type-of($color) ==color) {
+      color: $color;
+    }
+  }
+  
+  

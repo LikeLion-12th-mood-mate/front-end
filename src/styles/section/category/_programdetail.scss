@@ -1,0 +1,151 @@
+.programdetail{
+    background-color: $white;
+    padding-top: 34px;
+    .backward{
+        @include imgsize(50px,50px);
+        margin-bottom:11px;
+    }
+    .title{
+        @include text-style(24px,700,$black);
+        margin-bottom: 24px;
+    }
+    .profile-wrap{
+        @include flexbox(start,center);
+        margin-bottom: 22px;
+        .profile{
+            @include imgsize(96px,96px);
+            border-radius: 12px;
+            background-color: $black;
+            margin-right: 22px;
+            flex-shrink: 0;
+        }
+        .desc-wrap{
+            @include column-flexbox(start,start);
+            .star-wrap{
+                @include flexbox(start,center);
+                margin-bottom: 8px;
+                .star{
+                    @include imgsize(16px,16px);
+                    margin-right: 4px;
+                }
+                .rating{
+                    @include text-style(12px,400,$black);
+                }
+            }
+            .name{
+                @include text-style(16px,700,$black);
+                margin-bottom: 8px;
+            }
+            .desc{
+                @include text-style(14px,400,$black);
+            }
+        }
+    }
+    .information{
+        background-color: #DEE4E0;
+        padding: 24px;
+        margin-bottom: 86px;
+        @include column-flexbox(start,start);
+        .time-place{
+            @include flexbox(start,center);
+            margin-bottom: 9px;
+            img{
+                @include imgsize(24px,24px);
+                margin-right: 18px;
+            }
+            p{
+                @include text-style(16px,700,$black);
+            }
+        }
+        .detail{
+            @include text-style(12px,400,#002018);
+            margin-bottom: 24px;
+        }
+        //타임테이블
+        .detail-wrap{
+            border-top: 1px solid $searchcolor;
+            padding-top: 32px; 
+            @include column-flexbox(start,start);   
+            .item-wrap{
+                @include flexbox(start,start);
+                margin-bottom: 40px;    
+                .time{
+                    @include text-style(14px,400,$grey);
+                    margin-right: 24px;
+                    flex-shrink: 0;
+                }
+                .desc-wrap{
+                    @include column-flexbox(start,start);
+                    h4{
+                        @include text-style(16px,700,$black);
+                        margin-bottom: 8px;
+                    }
+                    p{
+                        @include text-style(12px,400,$black);
+
+                    }
+                }
+            }
+        }
+        
+    }
+
+    //review
+    .review{
+        padding-left: 20px;
+        .title{
+            @include text-style(24px,700,$black); 
+            margin-bottom: 28px;  
+        }
+        .card-wrap{
+            width: 100%;
+            @include flexbox(start,center);
+            overflow: hidden;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none; 
+            margin-bottom: 150px;
+            .card{
+                width: 281px;
+                height: 178px;
+                padding: 16px;
+                background-color: $white;
+                flex-shrink: 0;
+                border: 1px solid #E1E3E0;
+                border-radius: 8px;
+                margin-right: 8px;
+                .header-wrap{
+                    @include flexbox(between,center);
+                    width: 100%;
+                    margin-bottom: 12px;
+                    .review-profile-wrap{
+                        @include flexbox(start,center);
+                        
+                        .review-profile{
+                            @include imgsize(24px,24px);
+                            background-color: $grey;
+                            margin-right: 8px;  
+                        }
+                        .name{
+                            @include text-style(12px,400,$black);
+                        }
+                    }
+                    .star-wrap{
+                        @include flexbox(start,center); 
+                        .star{
+                            @include imgsize(16px,16px);
+                            margin-right: 1px
+                        }
+                        .rating{
+                            @include text-style(12px,400,$black);
+                        }
+                    }
+                }
+                .review-desc{
+                    @include text-style(12px,400,$black);
+                }
+                
+            }
+        }
+    }
+}
