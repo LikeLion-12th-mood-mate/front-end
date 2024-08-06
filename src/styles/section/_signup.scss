@@ -130,6 +130,7 @@
             background-color: $light-green;
             width: 100%;
             height: 60px;
+            @include text-style(14px,400,$black);
         }
         
         
