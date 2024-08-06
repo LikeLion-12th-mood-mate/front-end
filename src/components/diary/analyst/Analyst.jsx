@@ -22,6 +22,7 @@ function Analyst() {
         }
         getAnalyst();
     },[])
+    
   return (
     <>
     {isLoading ? <Loading/> : 
