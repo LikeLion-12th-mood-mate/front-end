@@ -36,6 +36,9 @@
             scrollbar-width: none; 
             height: 110px;
             margin-bottom: 41px;
+            .none{
+                @include text-style(14px,400,$black);
+            }
             .percentage{
                 @include column-flexbox(start,center);
                 width: 96px;
